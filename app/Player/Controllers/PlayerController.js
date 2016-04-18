@@ -5,4 +5,6 @@
 module.exports = function($scope, PlayerFactory) {
 
     this.players = PlayerFactory.players;
+    console.log('players: ');
+    console.log(players);
 };

@@ -1,7 +1,7 @@
 /**
  * Created by Raymond Phua on 18-Apr-16.
  */
-require('./angular/angular');
+require('angular/angular.min');
 
 //Create app
 var app = angular.module('mahjong', []);

@@ -23,3 +23,5 @@ Player.prototype.getAge = function() {
 Player.prototype.isInGame = function() {
     return this.inGame;
 };
+
+module.exports = Player;
