@@ -5,7 +5,8 @@ require('angular/angular');
 
 //Create app
 var app = angular.module('mahjong', []);
-var playerFactory = require('./PlayerFactory');
+var playerFactory = require('../Player/Services/PlayerFactory');
+var playerController = require('../Player/Controllers/PlayerController');
 
 app.factory('PlayerFactory', playerFactory);
-app.controller('PlayerController', ['$scope', 'PlayerFactory']);
+app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);

@@ -54,5 +54,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-http-server');
 
     //The default tasks to run when you type: grunt
-    grunt.registerTask('default', ['browserify', 'copu', 'http-server', 'watch']);
+    grunt.registerTask('default', ['browserify', 'copy', 'http-server', 'watch']);
 };
