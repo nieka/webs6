@@ -3,5 +3,6 @@
  */
 // PlayerController.js
 module.exports = function($scope, PlayerFactory) {
-    
+
+    this.players = PlayerFactory.players;
 };

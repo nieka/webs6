@@ -1,17 +1,20 @@
 /**
  * Created by Raymond Phua on 18-Apr-16.
  */
+
+var Player = require('../Models/Player');
+
 // PlayerFactory.js
 module.exports = function() {
     var factory = {};
 
     factory.players = [
-        { name: 'Raymond', age: 20, inGame: false },
-        { name: 'Niek', age: 20, inGame: true },
-        { name: 'TestUser1', age: 21, inGame: true },
-        { name: 'TestUser2', age: 22, inGame: true },
-        { name: 'TestUser3', age: 23, inGame: false },
-        { name: 'TestUser4', age: 24, inGame: true }
+        new Player('Raymond', 20, false),
+        new Player('Niek', 20, true),
+        new Player('TestUser1', 21, true),
+        new Player('TestUser2', 22, true),
+        new Player('TestUser3', 23, false),
+        new Player('TestUser4', 24, true)
     ];
 
     return factory;
