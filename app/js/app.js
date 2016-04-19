@@ -7,6 +7,10 @@ require('angular/angular.min');
 var app = angular.module('mahjong', []);
 var playerFactory = require('../Player/Services/PlayerFactory');
 var playerController = require('../Player/Controllers/PlayerController');
+var gameFactory = require('../Game/Services/GameFactory');
+var gameController = require('../Game/Controllers/GameController');
 
 app.factory('PlayerFactory', playerFactory);
+app.factory('GameFactory', gameFactory);
 app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);
+app.controller('GameController', ['$scope', 'GameFactory', gameController]);
