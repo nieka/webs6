@@ -43,10 +43,9 @@
     </nav>
     <!-- Player controller -->
     <div ng-controller="PlayerController as playerController">
-        test
+        Players not in game:
         <div ng-repeat="player in playerController.players">
-            <p>
-                player: <br/>
+            <p ng-if="!player.isInGame()">
                 {{player.getName()}} <br/>
                 {{player.getAge()}} <br/>
                 {{player.isInGame()}} <br/>
