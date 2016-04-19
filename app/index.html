@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Majhong solitaire</title>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
@@ -36,24 +32,11 @@
                 <ul class="nav navbar-nav">
                    <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
                     <li><a data-toggle="modal" data-target="#gamesModel">Games</a></li>
-
+                    <li><a data-toggle="modal" data-target="#playersModel">Players</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-    <!-- Player controller -->
-    <div ng-controller="PlayerController as playerController">
-        Players not in game:
-        <div ng-repeat="player in playerController.players">
-            <p ng-if="!player.isInGame()">
-                {{player.getName()}} <br/>
-                {{player.getAge()}} <br/>
-                {{player.isInGame()}} <br/>
-            </p>
-        </div>
-    </div>
-
-
 
 
     <!--Models-->
@@ -62,14 +45,15 @@
     <div id="gamesModel" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Games</h4>
-                </div>
-                <div class="modal-body">
-                    <div ng-controller="GameController as gameController">
+            <!-- game controller start -->
+            <div ng-controller="GameController as gameController">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Games</h4>
+                    </div>
+                    <div class="modal-body">
                         <div ng-repeat="game in gameController.games | orderBy:'-createDate' ">
                             <div class="row">
                                 <div class="col-md-8">
@@ -78,7 +62,7 @@
                                 <div class="col-md-4">
                                     <div ng-switch on="game.getStatus()">
                                         <div ng-switch-when="Not Active">
-                                            <button class="btn btn-primary" ng-click="joinGame(game.id)">Join</button>
+                                            <button class="btn btn-primary" ng-click="gameController.joinGame(game.id)">Join</button>
                                         </div>
                                         <div ng-switch-when="Active">
                                             <strong>Game is begonnen</strong>
@@ -94,17 +78,55 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" ng-click="gameController.newGame()">new game</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Models-->
+    <!--game model-->
+    <!-- Modal -->
+    <div id="playersModel" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Players</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-controller="PlayerController as playerController">
+                        <div class="list-group">
+                            <div ng-repeat="player in playerController.players">
+                                <a href="#" class="list-group-item">
+                                    <h4>
+                                        username: {{player.getName()}} <br/>
+                                        age: {{player.getAge()}} <br/>
+                                        <span class="label label-success" ng-if="player.isInGame()">in game</span>
+                                        <span class="label label-warning" ng-if="!player.isInGame()">not in game</span>
+                                    </h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
 
-
     <!-- SCRIPTS -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
