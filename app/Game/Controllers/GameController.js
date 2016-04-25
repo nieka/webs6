@@ -14,6 +14,14 @@ module.exports = function($scope, GameFactory) {
         game.addPlayer(123345); // fake id
         console.log("gebruiker toegevoegd");
         console.log(game);
+
+        console.log('game tiles: ');
+        console.log(GameFactory.getBoardTiles(id).then(function(value) {
+            console.log('got tiles');
+            console.log(value);
+            game.setBoardTiles(value);
+            console.log(game);
+        }));
     };
 
     this.newGame = function() {

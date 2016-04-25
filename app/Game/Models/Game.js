@@ -2,13 +2,14 @@
  * Created by niek on 18-4-2016.
  */
 // Game model
-var Game = function(id,name, status, players, createDate) {
+var Game = function(id,name, status, players, createDate, boardTiles) {
 
     this.id = id;
     this.name = name;
     this.status = status;
     this.players = players;
     this.createDate = createDate;
+    this.boardTiles = boardTiles;
 };
 
 Game.prototype.getId = function(){
@@ -33,6 +34,17 @@ Game.prototype.getPlayers = function() {
 Game.prototype.getCreateDate = function() {
     return this.createDate;
 };
+
+//get game tiles
+Game.prototype.getBoardTiles = function() {
+    return this.boardTiles;
+};
+
+//set game tiles
+Game.prototype.setBoardTiles = function(gameTiles) {
+    this.boardTiles = gameTiles;
+};
+
 Game.prototype.isActive = function() {
     if(this.status === "Active"){
         return true;
