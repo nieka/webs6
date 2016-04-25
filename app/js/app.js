@@ -12,5 +12,10 @@ var gameController = require('../Game/Controllers/GameController');
 
 app.factory('PlayerFactory', playerFactory);
 app.factory('GameFactory', gameFactory);
+
+
+//require('./controlles/index')(app);
+
+
 app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);
 app.controller('GameController', ['$scope', 'GameFactory', gameController]);
