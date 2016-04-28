@@ -3,6 +3,7 @@
  */
 
 var Game = require('../Models/Game');
+var Board = require('../Models/Board');
 
 // GameController.js
 module.exports = function($scope, GameFactory) {
@@ -12,16 +13,13 @@ module.exports = function($scope, GameFactory) {
     this.joinGame = function(id){
         var game = GameFactory.getGame(id);
         game.addPlayer(123345); // fake id
-        console.log("gebruiker toegevoegd");
-        console.log(game);
 
-        console.log('game tiles: ');
-        console.log(GameFactory.getBoardTiles(id).then(function(value) {
+        GameFactory.getBoardTiles(id).then(function(value) {
             console.log('got tiles');
             console.log(value);
-            game.setBoardTiles(value);
+            game.setBoardTiles(value.data);
             console.log(game);
-        }));
+        });
     };
 
     this.newGame = function() {
