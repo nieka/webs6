@@ -54,15 +54,16 @@
                         <h4 class="modal-title">Games</h4>
                     </div>
                     <div class="modal-body">
-                        <div ng-repeat="game in gameController.games | orderBy:'-createDate' ">
+                        <div ng-repeat="game in gameController.getGames() | orderBy:'-createDate' ">
                             <div class="row">
                                 <div class="col-md-8">
                                     {{game.getName()}}
                                 </div>
                                 <div class="col-md-4">
+                                    <!--todo when statment toevoegen voro als de game is begonnen en je erin zit je de game kan laten zien-->
                                     <div ng-switch on="game.getStatus()">
                                         <div ng-switch-when="Not Active">
-                                            <button class="btn btn-primary" ng-click="gameController.joinGame(game.id)">Join</button>
+                                            <button class="btn btn-primary" ng-click="gameController.showGame(game.id)">Join</button>
                                         </div>
                                         <div ng-switch-when="Active">
                                             <strong>Game is begonnen</strong>

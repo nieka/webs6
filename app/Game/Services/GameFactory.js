@@ -26,6 +26,14 @@ module.exports = function($http) {
         }
     };
 
+    factory.getGames = function(){
+        return factory.games;
+    };
+
+    factory.addGame = function (game) {
+        factory.games.push(game);
+    };
+
     factory.getBoardTiles = function(id) {
         var url = 'https://mahjongmayhem.herokuapp.com/games/' + id + '/tiles';
         console.log("URL: " + url);
