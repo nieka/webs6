@@ -6,7 +6,7 @@ var Game = require('../Models/Game');
 var Board = require('../Models/Board');
 
 // GameController.js
-module.exports = function($scope, GameFactory) {
+module.exports = function($scope, GameFactory, BoardService) {
 
     var self = this;
     var game, board;
@@ -19,15 +19,13 @@ module.exports = function($scope, GameFactory) {
         game = GameFactory.getGame(id);
         GameFactory.getBoardTiles(id).then(function(value) {
             console.log('got tiles');
-            console.log(value);
             setupGame(value.data);
         });
     };
 
     //zorgt dat alles geregeld word om de game te kunnen spelen
     function setupGame(tiles){
-        board = new Board(tiles);
-        game.setBoard(board);
+        BoardService.init(tiles);
     }
 
     self.newGame = function() {
@@ -39,7 +37,6 @@ module.exports = function($scope, GameFactory) {
     };
 
     self.matchTiles = function(id, idTwo){
-        console.log(board);
-        board.tilesMatch(id, idTwo);
+        return BoardService.canMatch(id, idTwo);
     }
 };

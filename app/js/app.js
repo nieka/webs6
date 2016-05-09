@@ -8,14 +8,12 @@ var app = angular.module('mahjong', []);
 var playerFactory = require('../Player/Services/PlayerFactory');
 var playerController = require('../Player/Controllers/PlayerController');
 var gameFactory = require('../Game/Services/GameFactory');
+var boardService = require('../Game/Services/BoardService');
 var gameController = require('../Game/Controllers/GameController');
 
-app.factory('PlayerFactory', playerFactory);
-app.factory('GameFactory', gameFactory);
-
-
-//require('./controlles/index')(app);
-
+app.service('PlayerFactory', playerFactory);
+app.service('BoardService', boardService);
+app.service('GameFactory', gameFactory);
 
 app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);
-app.controller('GameController', ['$scope', 'GameFactory', gameController]);
+app.controller('GameController', ['$scope', 'GameFactory', 'BoardService', gameController]);
