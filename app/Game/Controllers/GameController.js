@@ -9,7 +9,7 @@ var Board = require('../Models/Board');
 module.exports = function($scope, GameFactory, BoardService) {
 
     var self = this;
-    var game, board;
+    var game;
 
     self.joinGame = function(id){
         GameFactory.getGame(id).addPlayer("123456");
@@ -38,5 +38,9 @@ module.exports = function($scope, GameFactory, BoardService) {
 
     self.matchTiles = function(id, idTwo){
         return BoardService.canMatch(id, idTwo);
-    }
+    };
+
+    self.selectTile = function(tile) {
+        return BoardService.checkAvailable(tile);
+    };
 };
