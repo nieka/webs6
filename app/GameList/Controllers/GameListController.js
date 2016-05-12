@@ -12,6 +12,11 @@ module.exports = function($scope, GameListFactory) {
 
     var self = this;
     self.selectedGame;
+    self.message;
+    //form vairbale
+    self.minPlayers =1;
+    self.maxPlayers =2;
+    self.template = "Shanghai";
 
     self.init = function(){
         GameListFactory.getGames().then(function(value){
@@ -46,10 +51,32 @@ module.exports = function($scope, GameListFactory) {
     };
 
     self.ShowNewGameModel = function() {
-        console.log("nieuwe game");
+        $("#errorMessage").hide();
+        $('#addGameModel').modal('show');
     };
 
     self.getGames = function() {
         return GameListFactory.games;
     };
+
+    self.saveGame = function() {
+        var game = {};
+
+        if(self.minPlayers <= self.maxPlayers){
+            game.templateName = self.template;
+            game.minPlayers = self.minPlayers;
+            game.maxPlayers = self.maxPlayers;
+            console.log(game);
+            self.minPlayers =1;
+            self.maxPlayers =2;
+            self.template = "Shanghai";
+            self.message = "De game is toegevoegd";
+            $("#gameAdded").show();
+            $('#addGameModel').modal('hide');
+        } else {
+            $("#errorMessage").show()
+        }
+
+
+    }
 };
