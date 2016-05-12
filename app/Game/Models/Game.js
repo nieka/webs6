@@ -2,13 +2,19 @@
  * Created by niek on 18-4-2016.
  */
 // Game model
-var Game = function(id,name, status, players, createDate) {
+var Game = function(id,createdBy, createdOn, startedOn, endedOn, gameTemplate, players
+,maxPlayers, minPlayers,state) {
 
     this.id = id;
-    this.name = name;
-    this.status = status;
+    this.createdBy = createdBy;
+    this.createdOn = createdOn;
+    this.startedOn = startedOn;
+    this.endedOn = endedOn;
+    this.gameTemplate = gameTemplate;
     this.players = players;
-    this.createDate = createDate;
+    this.maxPlayers = maxPlayers;
+    this.minPlayers = minPlayers;
+    this.state = state;
 };
 
 Game.prototype.getId = function(){
@@ -16,43 +22,60 @@ Game.prototype.getId = function(){
 };
 
 //getName
-Game.prototype.getName = function() {
-    return this.name;
+Game.prototype.getCreatedBy = function() {
+    return this.createdBy;
+};
+Game.prototype.getCreatorName = function() {
+    return this.createdBy.name;
+}
+
+//getName
+Game.prototype.getCreatedOn = function() {
+    return this.createdOn;
 };
 
 //getStatus
-Game.prototype.getStatus = function() {
-    return this.status;
+Game.prototype.getStartedOn = function() {
+    return this.startedOn;
 };
 
 //getplayers
-Game.prototype.getPlayers = function() {
+Game.prototype.getEndedOn = function() {
     return this.persons;
 };
 //get create date
-Game.prototype.getCreateDate = function() {
-    return this.createDate;
+Game.prototype.getGameTemplate = function() {
+    return this.gameTemplate;
 };
 
 //get game tiles
-Game.prototype.getBoard = function() {
-    return this.board;
+Game.prototype.getPlayers = function() {
+    return this.players;
 };
 
 //set game tiles
-Game.prototype.setBoard = function(board) {
-    this.board = board;
+Game.prototype.getMaxPlayers = function() {
+    return this.maxPlayers;
+};
+//set game tiles
+Game.prototype.getMinPlayers = function() {
+    return this.minPlayers;
+};
+//set game tiles
+Game.prototype.getState = function() {
+    return this.state;
 };
 
-Game.prototype.isActive = function() {
-    if(this.status === "Active"){
-        return true;
-    } else {
-        return false;
+Game.prototype.AmountOfPlayers = function(){
+    return this.players.length;
+}
+
+Game.prototype.canIJoin = function(){
+    if(this.state === "open"){
+       if(this.AmountOfPlayers() < this.maxPlayers){
+           return true;
+       }
     }
-};
-
-Game.prototype.addPlayer = function(id){
-  this.players.push(id);
+    return false;
 };
 module.exports = Game;
