@@ -22,6 +22,7 @@ app.factory('BoardService', boardService);
 app.factory('GameFactory', gameFactory);
 app.factory('GameListService', gameListService);
 app.factory('ProfielService', profielService);
+app.factory('httpRequestInterceptor', require('../config/httpinterceptors'));
 
 app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);
 app.controller('GameController', ['$scope', 'GameFactory', gameController]);
@@ -30,3 +31,6 @@ app.controller('ProfielController', ['$scope', 'ProfielService','GameListService
 
 //config
 app.config(require('../config/routing'));
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('httpRequestInterceptor');
+});
