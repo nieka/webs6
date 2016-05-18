@@ -71,7 +71,10 @@ module.exports = function($scope, GameListFactory) {
             self.maxPlayers =2;
             self.template = "Shanghai";
             self.message = "De game is toegevoegd";
-            $("#gameAdded").show();
+            GameListFactory.saveGame(game).then(function(value){
+                //game is toegevoegd
+                $("#gameAdded").show();
+            });
             $('#addGameModel').modal('hide');
         } else {
             $("#errorMessage").show()

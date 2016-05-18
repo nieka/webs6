@@ -37,5 +37,11 @@ module.exports = function($http) {
         return $http.get(url);
     };
 
+    factory.saveGame = function(game){
+        console.log("add game");
+        console.log(game);
+        return $http.post(baseUrl + "Games", game);
+    };
+
     return factory;
 };
