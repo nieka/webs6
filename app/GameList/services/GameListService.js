@@ -9,6 +9,7 @@ module.exports = function($http) {
     var baseUrl= 'https://mahjongmayhem.herokuapp.com/';
 
     factory.games = [];
+    factory.myGames = [];
 
     factory.getGame = function(id){
         for(var i=0; i < factory.games.length; i++){
@@ -25,6 +26,9 @@ module.exports = function($http) {
 
     factory.addGame = function (game) {
         factory.games.push(game);
+    };
+    factory.addMyGame = function (game) {
+        factory.myGames.push(game);
     };
 
     factory.getBoardTiles = function(id) {
