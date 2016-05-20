@@ -41,7 +41,10 @@ module.exports = function($scope, GameListFactory) {
     };
 
     self.joinGame = function(id){
-        GameListFactory.getGame(id).addPlayer("123456");
+        GameListFactory.joinGame(id).then(function(response){
+            self.init();
+            $('#joindGame').show();
+        });
     };
 
     self.showDetails = function(game){

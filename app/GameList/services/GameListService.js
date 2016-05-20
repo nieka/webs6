@@ -25,6 +25,9 @@ module.exports = function($http) {
     };
 
     factory.addGame = function (game) {
+        if(window.localStorage['username'] != undefined){
+            game.userid = window.localStorage['username'];
+        }
         factory.games.push(game);
     };
     factory.addMyGame = function (game) {
@@ -38,9 +41,11 @@ module.exports = function($http) {
     };
 
     factory.saveGame = function(game){
-        console.log("add game");
-        console.log(game);
         return $http.post(baseUrl + "Games", game);
+    };
+
+    factory.joinGame = function(id){
+        return $http.post(baseUrl + "Games/" + id + "/Players");
     };
 
     return factory;

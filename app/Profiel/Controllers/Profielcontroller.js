@@ -1,6 +1,9 @@
 /**
  * Created by niek on 13-5-2016.
  */
+
+var Game = require('../../Game/Models/Game');
+
 module.exports = function($scope, ProfielController,GameListFactory,$stateParams) {
 
     var self = this;

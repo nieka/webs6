@@ -68,14 +68,20 @@ Game.prototype.getState = function() {
 
 Game.prototype.AmountOfPlayers = function(){
     return this.players.length;
-}
+};
 
 Game.prototype.canIJoin = function(){
     if(this.state === "open"){
+        for(var i=0; i< this.players.length; i++){
+            if(this.players[i]._id === this.userid){
+                return false;
+            }
+        }
        if(this.AmountOfPlayers() < this.maxPlayers){
            return true;
        }
     }
     return false;
 };
+
 module.exports = Game;
