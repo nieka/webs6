@@ -17,5 +17,12 @@ module.exports = function($stateProvider) {
             url: '/profiel',
             templateUrl : 'Profiel/Views/profiel.html',
             controller  : 'ProfielController as p'
+        })
+        .state('profiel.gamelist', {
+            params: {
+                userid: null
+            },
+            templateUrl: 'GameList/Views/GameList.html',
+            controller: 'GameListController as g'
         });
 };

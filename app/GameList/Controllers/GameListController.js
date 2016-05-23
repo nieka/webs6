@@ -8,7 +8,7 @@
 var Game = require('../../Game/Models/Game');
 
 // GameController.js
-module.exports = function($scope, GameListFactory) {
+module.exports = function($scope,$stateParams, GameListFactory) {
 
     var self = this;
     self.selectedGame;
@@ -19,7 +19,13 @@ module.exports = function($scope, GameListFactory) {
     self.template = "Shanghai";
 
     self.init = function(){
-        GameListFactory.getGames().then(function(value){
+        var paramater = "";
+        if($stateParams.userid != undefined){
+            paramater = "?player=" + $stateParams.userid;
+        }
+        console.log(paramater);
+        GameListFactory.flush();
+        GameListFactory.getGames(paramater).then(function(value){
             var games = value.data;
             for(var i=0; i < games.length; i++){
                 var gamedata = games[i];

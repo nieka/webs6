@@ -26,8 +26,8 @@ app.factory('httpRequestInterceptor', require('../config/httpinterceptors'));
 
 app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);
 app.controller('GameController', ['$scope', 'GameFactory', gameController]);
-app.controller('GameListController', ['$scope', 'GameListService', gameListController]);
-app.controller('ProfielController', ['$scope', 'ProfielService','GameListService', '$stateParams', profielController]);
+app.controller('GameListController', ['$scope','$stateParams', 'GameListService', gameListController]);
+app.controller('ProfielController', ['$scope','$state', 'ProfielService','GameListService', '$stateParams', profielController]);
 
 //config
 app.config(require('../config/routing'));

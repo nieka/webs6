@@ -9,29 +9,6 @@
             </p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-2">
-        </div>
-
-        <div class="col-md-8" id="gamelijst">
-            <h2>Mijn games</h2>
-            <table class="table table-nonfluid">
-                <thead>
-                <td><strong>Gemaakt door</strong></td>
-                <td><strong>Min spelers</strong></td>
-                <td><strong>Max spelers</strong></td>
-                <td><strong>Aantal spelers</strong></td>
-                <td><strong>state</strong></td>
-                </thead>
-                <tr ng-repeat="game in p.getMyGames() ">
-                    <td> {{game.getCreatorName()}}</td>
-                    <td> {{game.getMinPlayers()}}</td>
-                    <td> {{game.getMaxPlayers()}}</td>
-                    <td> {{game.AmountOfPlayers()}}</td>
-                    <td> {{game.getState()}}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
+    <div ui-view></div>
 
 </div>

@@ -4,7 +4,7 @@
 
 var Game = require('../../Game/Models/Game');
 
-module.exports = function($scope, ProfielController,GameListFactory,$stateParams) {
+module.exports = function($scope,$state, ProfielController,GameListFactory,$stateParams ) {
 
     var self = this;
     self.username;
@@ -25,32 +25,7 @@ module.exports = function($scope, ProfielController,GameListFactory,$stateParams
                 window.localStorage['username'] = self.username;
             }
         }
-        GameListFactory.getGames("?player=" + self.username).then(function(value){
-            var games = value.data;
-            for(var i=0; i < games.length; i++){
-                var gamedata = games[i];
-                var game = new Game(
-                    gamedata._id,
-                    gamedata.createdBy,
-                    gamedata.createdOn,
-                    gamedata.startedOn,
-                    gamedata.endedOn,
-                    gamedata.gameTemplate,
-                    gamedata.players,
-                    gamedata.maxPlayers,
-                    gamedata.minPlayers,
-                    gamedata.state
-                );
-                GameListFactory.addMyGame(game);
-            };
-        });
-    };
+        $state.transitionTo('profiel.gamelist',{userid: self.username});
 
-    self.getMyGames = function(){
-       return GameListFactory.myGames;
     };
-
-    self.joinGame = function(){
-        console.log("join game");
-    }
 };
