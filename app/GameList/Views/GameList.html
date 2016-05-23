@@ -4,13 +4,11 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-8">
-            <div class="alert alert-success alert-dismissible" role="alert" style="display:none;" id="gameAdded">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <Strong>De game is toegevoegd</Strong>
+            <div class="alert alert-success alert-dismissible" role="alert" ng-if="g.succesMessage != ''">
+                {{ g.succesMessage }}
             </div>
-            <div class="alert alert-success alert-dismissible" role="alert" style="display:none;" id="joindGame">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <Strong>Je bent toegevoegd aan de game</Strong>
+            <div class="alert alert-danger" ng-if="g.errorMessage != ''">
+                {{ g.errorMessage }}
             </div>
 
             <button class="btn btn-default" ng-click="g.ShowNewGameModel()">Nieuwe game aanmaken</button>
@@ -34,7 +32,7 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-secondary" ng-click="g.showDetails(game)">Details</button>
+                            <button class="btn btn-info" ng-click="g.showDetails(game)">Details</button>
                         </td>
                     </tr>
             </table>
@@ -52,11 +50,15 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Game detail</h4>
+                    <div class="alert alert-success alert-dismissible" role="alert" style="display:none;" id="gameGestart">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <Strong>Game is gestart</Strong>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <strong>Game details</strong>
                     <ul style="list-style-type:none">
-                        <li><strong>Createby:</strong>          {{g.selectedGame.g4etCreatorName()}} </li>
+                        <li><strong>Createby:</strong>          {{g.selectedGame.getCreatorName()}} </li>
                         <li><strong>Create On:</strong>         {{g.selectedGame.getCreatedOn()}} </li>
                         <li><strong>Started On :</strong>       {{g.selectedGame.getStartedOn()}} </li>
                         <li><strong>Ended On:</strong>          {{g.selectedGame.getEndedOn()}} </li>
@@ -71,6 +73,9 @@
                     </ul>
                 </div>
                 <div class="modal-footer">
+                    <div ng-if="g.selectedGame.canStart()">
+                        <button class="btn btn-success" ng-click="g.startGame(g.selectedGame.getId())">Start game</button>
+                    </div>
                 </div>
             </div>
         </div>

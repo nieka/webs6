@@ -13,6 +13,10 @@ module.exports = function($scope,$stateParams, GameListFactory) {
     var self = this;
     self.selectedGame;
     self.message;
+
+    self.succesMessage = '';
+    self.errorMessage = '';
+
     //form vairbale
     self.minPlayers =1;
     self.maxPlayers =2;
@@ -49,9 +53,16 @@ module.exports = function($scope,$stateParams, GameListFactory) {
     self.joinGame = function(id){
         GameListFactory.joinGame(id).then(function(response){
             self.init();
-            $('#joindGame').show();
+            self.succesMessage = "Je bent toegevoegd aan de game";
         });
     };
+
+    self.startGame = function(id){
+        GameListFactory.startGame(id).then(function(response){
+            $("#gameGestart").show();
+        });
+    };
+
 
     self.showDetails = function(game){
         console.log(game);
@@ -82,7 +93,7 @@ module.exports = function($scope,$stateParams, GameListFactory) {
             self.message = "De game is toegevoegd";
             GameListFactory.saveGame(game).then(function(value){
                 //game is toegevoegd
-                $("#gameAdded").show();
+               self.succesMessage = 'Game is toegevoegd';
             });
             $('#addGameModel').modal('hide');
         } else {

@@ -34,6 +34,10 @@ module.exports = function($http) {
         factory.games = [];
     };
 
+    factory.startGame = function(id){
+        return $http.post(baseUrl + "Games/" + id + "/Start");
+    }
+
     factory.getBoardTiles = function(id) {
         var url = 'https://mahjongmayhem.herokuapp.com/games/' + id + '/tiles';
         console.log("URL: " + url);

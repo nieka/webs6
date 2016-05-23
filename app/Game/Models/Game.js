@@ -70,6 +70,15 @@ Game.prototype.AmountOfPlayers = function(){
     return this.players.length;
 };
 
+Game.prototype.canStart = function(){
+    if(this.createdBy._id === this.userid){
+        if(this.state === "open"){
+            return true;
+        }
+    }
+    return false;
+};
+
 Game.prototype.canIJoin = function(){
     if(this.state === "open"){
         for(var i=0; i< this.players.length; i++){
