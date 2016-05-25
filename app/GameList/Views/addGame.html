@@ -1,0 +1,46 @@
+<!--add game model-->
+<div class="alert alert-success alert-dismissible" role="alert" ng-if="ag.succesMessage != ''">
+    {{ ag.succesMessage }}
+</div>
+<button class="btn btn-default" data-toggle="modal" data-target="#addGameModel">Nieuwe game aanmaken</button>
+<div id="addGameModel" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add game</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" ng-if="ag.errorMessage != ''">
+                    {{ ag.errorMessage }}
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="minPlayers">Min player</label>
+                        <input type="number" class="form-control" id="minPlayers" placeholder="min players" min="1" ng-model="ag.minPlayers" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="maxPlayers">Max players</label>
+                        <input type="number" class="form-control" id="maxPlayers" placeholder="max players" min="2" ng-model="ag.maxPlayers" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gameTemplate">Game template</label>
+                        <select id="gameTemplate" ng-model="ag.template" class="form-control" required>
+                            <option value="Shanghai" selected>Shanghai</option>
+                            <option value="Rooster">Rooster</option>
+                            <option value="Snake">Snake</option>
+                            <option value="Monkey">Monkey</option>
+                            <option value="Ox">Ox</option>
+                            <option value="Dragon">Dragon</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="ag.saveGame()">Add</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

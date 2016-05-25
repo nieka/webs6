@@ -11,7 +11,7 @@
                 {{ g.errorMessage }}
             </div>
 
-            <button class="btn btn-default" ng-click="g.ShowNewGameModel()">Nieuwe game aanmaken</button>
+            <add-game></add-game>
             <table class="table table-nonfluid">
                 <thead>
                     <td><strong>Gemaakt door</strong></td>
@@ -76,51 +76,6 @@
                     <div ng-if="g.selectedGame.canStart()">
                         <button class="btn btn-success" ng-click="g.startGame(g.selectedGame.getId())">Start game</button>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--add game model-->
-    <div ui-view></div>
-    <div id="addGameModel" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add game</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-danger" role="alert" id="errorMessage">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span class="sr-only">Error:</span>
-                        Max players must be higher than min players
-                    </div>
-                    <form>
-                        <div class="form-group">
-                            <label for="minPlayers">Min player</label>
-                            <input type="number" class="form-control" id="minPlayers" placeholder="min players" min="1" ng-model="g.minPlayers" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="maxPlayers">Max players</label>
-                            <input type="number" class="form-control" id="maxPlayers" placeholder="max players" min="2" ng-model="g.maxPlayers" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="gameTemplate">Game template</label>
-                            <select id="gameTemplate" ng-model="g.template" class="form-control" required>
-                                <option value="Shanghai" selected>Shanghai</option>
-                                <option value="Rooster">Rooster</option>
-                                <option value="Snake">Snake</option>
-                                <option value="Monkey">Monkey</option>
-                                <option value="Ox">Ox</option>
-                                <option value="Dragon">Dragon</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-default" ng-click="g.saveGame(minPlayers, maxPlayers, template)">Add</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
                 </div>
             </div>
         </div>

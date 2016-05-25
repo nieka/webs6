@@ -17,11 +17,6 @@ module.exports = function($scope,$stateParams, GameListFactory) {
     self.succesMessage = '';
     self.errorMessage = '';
 
-    //form vairbale
-    self.minPlayers =1;
-    self.maxPlayers =2;
-    self.template = "Shanghai";
-
     self.init = function(){
         var paramater = "";
         if($stateParams.userid != undefined){
@@ -70,36 +65,7 @@ module.exports = function($scope,$stateParams, GameListFactory) {
         $('#GameDetailModel').modal('show');
     };
 
-    self.ShowNewGameModel = function() {
-        $("#errorMessage").hide();
-        $('#addGameModel').modal('show');
-    };
-
     self.getGames = function() {
         return GameListFactory.games;
     };
-
-    self.saveGame = function() {
-        var game = {};
-
-        if(self.minPlayers <= self.maxPlayers){
-            game.templateName = self.template;
-            game.minPlayers = self.minPlayers;
-            game.maxPlayers = self.maxPlayers;
-            console.log(game);
-            self.minPlayers =1;
-            self.maxPlayers =2;
-            self.template = "Shanghai";
-            self.message = "De game is toegevoegd";
-            GameListFactory.saveGame(game).then(function(value){
-                //game is toegevoegd
-               self.succesMessage = 'Game is toegevoegd';
-            });
-            $('#addGameModel').modal('hide');
-        } else {
-            $("#errorMessage").show()
-        }
-
-
-    }
 };

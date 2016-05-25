@@ -15,7 +15,7 @@ var gameListController = require('../GameList/Controllers/GameListController');
 var gameListService = require('../GameList/services/GameListService');
 var profielService = require('../Profiel/Services/ProfielService');
 var profielController = require('../Profiel/Controllers/Profielcontroller');
-
+var addGameController = require('../GameList/Controllers/addGameController');
 
 app.factory('PlayerFactory', playerFactory);
 app.factory('BoardService', boardService);
@@ -28,6 +28,11 @@ app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]
 app.controller('GameController', ['$scope', 'GameFactory', gameController]);
 app.controller('GameListController', ['$scope','$stateParams', 'GameListService', gameListController]);
 app.controller('ProfielController', ['$scope','$state', 'ProfielService','GameListService', '$stateParams', profielController]);
+app.controller('AddGameController', ['$scope','GameListService', addGameController]);
+
+//directives
+app.directive('addGame', require('../GameList/Directives/addGame'));
+
 
 //config
 app.config(require('../config/routing'));
