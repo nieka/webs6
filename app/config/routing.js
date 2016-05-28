@@ -24,5 +24,12 @@ module.exports = function($stateProvider) {
             },
             templateUrl: 'GameList/Views/GameList.html',
             controller: 'GameListController as g'
+        })
+        .state('showGame', {
+            params: {
+               id: null
+            },
+            templateUrl: 'GameList/Views/showGame.html',
+            controller: 'showGameController as sg'
         });
 };

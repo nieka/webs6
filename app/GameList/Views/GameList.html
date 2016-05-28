@@ -76,6 +76,9 @@
                     <div ng-if="g.selectedGame.canStart()">
                         <button class="btn btn-success" ng-click="g.startGame(g.selectedGame.getId())">Start game</button>
                     </div>
+                    <div ng-if="g.selectedGame.state == 'playing'">
+                        <button class="btn btn-success" ui-sref="showGame({id: g.selectedGame.getId()})">View Game</button>
+                    </div>
                 </div>
             </div>
         </div>

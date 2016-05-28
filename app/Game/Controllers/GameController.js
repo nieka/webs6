@@ -19,6 +19,7 @@ module.exports = function($scope, GameFactory) {
         GameFactory.getBoardTiles(id).then(function(value) {
             console.log('got tiles');
             setupGame(value.data);
+            console.log(value.data);
         });
     };
 

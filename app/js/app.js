@@ -16,6 +16,7 @@ var gameListService = require('../GameList/services/GameListService');
 var profielService = require('../Profiel/Services/ProfielService');
 var profielController = require('../Profiel/Controllers/Profielcontroller');
 var addGameController = require('../GameList/Controllers/addGameController');
+var showGameController = require('../GameList/Controllers/showGameController');
 
 app.factory('PlayerFactory', playerFactory);
 app.factory('BoardService', boardService);
@@ -26,9 +27,10 @@ app.factory('httpRequestInterceptor', require('../config/httpinterceptors'));
 
 app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);
 app.controller('GameController', ['$scope', 'GameFactory', gameController]);
-app.controller('GameListController', ['$scope','$stateParams', 'GameListService', gameListController]);
+app.controller('GameListController', ['$scope','$stateParams', 'GameListService', 'GameFactory', 'BoardService', gameListController]);
 app.controller('ProfielController', ['$scope','$state', 'ProfielService','GameListService', '$stateParams', profielController]);
 app.controller('AddGameController', ['$scope','GameListService', addGameController]);
+app.controller('ShowGameController', ['$scope', '$state', 'GameFactory', 'BoardService', showGameController]);
 
 //directives
 app.directive('addGame', require('../GameList/Directives/addGame'));

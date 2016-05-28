@@ -8,7 +8,7 @@
 var Game = require('../../Game/Models/Game');
 
 // GameController.js
-module.exports = function($scope,$stateParams, GameListFactory) {
+module.exports = function($scope,$stateParams, GameListFactory, GameFactory, BoardService) {
 
     var self = this;
     self.selectedGame;
