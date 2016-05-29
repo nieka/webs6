@@ -64,7 +64,7 @@ module.exports = function($http) {
 
         angular.forEach(self.boardTiles, function(value, key) {
 
-            if ((tile.xPos - 2) === value.xPos && yPositions.indexOf(tile.yPos) > -1 && tile.zPos === value.zPos) {
+            if ((tile.xPos - 2) === value.xPos && yPositions.indexOf(value.yPos) > -1 && tile.zPos === value.zPos) {
                 hasLeft = true;
             }
         });

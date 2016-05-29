@@ -34,7 +34,7 @@ app.controller('ShowGameController', ['$scope', '$stateParams', 'GameListService
 
 //directives
 app.directive('addGame', require('../GameList/Directives/addGame'));
-
+app.directive('tile', require('../GameList/Directives/tile'));
 
 //config
 app.config(require('../config/routing'));
