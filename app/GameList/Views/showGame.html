@@ -1,1 +1,8 @@
-test
+<!--show game model-->
+<div class="board">
+    <div class="absolute-layout" ng-repeat="tile in sg.board.getBoardTiles()" style="left:{{tile.xPos * 36  - 4*tile.zPos}}px; top:{{tile.yPos * 45 - 4*tile.zPos}}px; z-index:{{tile.zPos}}">
+        <div class="tile" ng-click="sg.checkAvailable(tile)" ng-class="">TEST</div>
+    </div>
+</div>
+
+<!--<div class="tile">test</div>-->

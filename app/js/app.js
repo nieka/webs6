@@ -27,10 +27,10 @@ app.factory('httpRequestInterceptor', require('../config/httpinterceptors'));
 
 app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);
 app.controller('GameController', ['$scope', 'GameFactory', gameController]);
-app.controller('GameListController', ['$scope','$stateParams', 'GameListService', 'GameFactory', 'BoardService', gameListController]);
+app.controller('GameListController', ['$scope','$stateParams', 'GameListService', gameListController]);
 app.controller('ProfielController', ['$scope','$state', 'ProfielService','GameListService', '$stateParams', profielController]);
 app.controller('AddGameController', ['$scope','GameListService', addGameController]);
-app.controller('ShowGameController', ['$scope', '$state', 'GameFactory', 'BoardService', showGameController]);
+app.controller('ShowGameController', ['$scope', '$stateParams', 'GameListService', 'BoardService', showGameController]);
 
 //directives
 app.directive('addGame', require('../GameList/Directives/addGame'));

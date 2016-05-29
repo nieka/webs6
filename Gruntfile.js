@@ -35,6 +35,10 @@ module.exports = function(grunt) {
             css: {
                 files: 'app/**/*.css',
                 tasks: 'copy'
+            },
+            images: {
+                files: 'app/**/*.png',
+                tasks: 'copy'
             }
         },
         'http-server': {

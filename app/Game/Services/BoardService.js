@@ -10,11 +10,12 @@ module.exports = function($http) {
         self.boardTiles = tiles;
     };
 
-    service.canMatch = function(idOne, idTwo){
-        var tileOne = getTile(idOne);
-        var tileTwo = getTile(idTwo);
+    service.canMatch = function(tileOne, tileTwo){
+        //var tileOne = getTile(idOne);
+        //var tileTwo = getTile(idTwo);
 
-        return tilesMatch(tileOne.tile,tileTwo.tile);
+        //return tilesMatch(tileOne.tile,tileTwo.tile);
+        return tilesMatch(tileOne, tileTwo);
     };
 
     service.checkAvailable = function(tile) {
@@ -31,7 +32,10 @@ module.exports = function($http) {
     };
 
     function tilesMatch(tileOne,tileTwo){
+        console.log(tileOne);
+        console.log(tileTwo);
         if(tileOne.suit === tileTwo.suit){
+            console.log(tileOne.suit + " " + tileTwo.suit);
             if(!tileOne.matchesWholeSuit || !tileTwo.matchesWholeSuit){
                 if(tileOne.name === tileTwo.name){
                     return true;

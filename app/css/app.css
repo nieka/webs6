@@ -8,3 +8,21 @@
 .naamvalue {
     display: inline-block;
 }
+
+.tile {
+    background-image: url('./../images/test.png');
+    width: 70px;
+    height: 90px;
+    background-color: green;
+}
+
+.absolute-layout {
+    position: absolute;
+}
+
+.board {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 140px;
+}

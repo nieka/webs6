@@ -29,7 +29,8 @@ module.exports = function($stateProvider) {
             params: {
                id: null
             },
+            url: '/showGame',
             templateUrl: 'GameList/Views/showGame.html',
-            controller: 'showGameController as sg'
+            controller: 'ShowGameController as sg'
         });
 };
