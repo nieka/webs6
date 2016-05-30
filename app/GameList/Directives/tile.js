@@ -3,7 +3,18 @@
  */
 module.exports = function(){
     return {
-        restrict : 'E',
-        template: '<div class="tile" ng-click="sg.checkAvailable(tile)"></div>'
+        restrict : 'EA',
+        scope: {
+            // name: "=",
+            // suit: "=",
+            // left: "=",
+            // top: "=",
+            // z: "=",
+            tile: "=tileInfo"
+        },
+        controller: 'TileController',
+        controllerAs: 't',
+        bindToController: true,
+        template: '<div class="tile test" style="left: {{t.tile.xPos}}px; top: {{t.tile.yPos}}px; z-index: {{t.tile.zPos}};">{{t.tile.tile.suit}} {{t.tile.tile.name}}</div>'
     }
 };
