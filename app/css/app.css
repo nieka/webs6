@@ -10,16 +10,19 @@
 }
 
 .tile {
-    background-image: url('./../images/test.png');
+    background-image: url('../images/SpriteSD.png');
+    /*background-position: 0px -485px;*/
+    /*background-size: contain;*/
     width: 70px;
     height: 90px;
-    background-color: green;
+    /*background-color: green;*/
     border-style: solid;
     border-width: 3px;
+    position:absolute;
 }
 
-.absolute-layout {
-    position: absolute;
+.test {
+    background-position: 0px 0px;
 }
 
 .board {
