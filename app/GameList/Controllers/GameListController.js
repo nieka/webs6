@@ -1,19 +1,11 @@
-/**
- * Created by niek on 12-5-2016.
- */
-/**
- * Created by niek on 18-4-2016.
- */
-
 var Game = require('../../Game/Models/Game');
 
 // GameController.js
-module.exports = function($scope,$stateParams, GameListFactory) {
+module.exports = function($scope,$stateParams, GameListFactory,$uibModal) {
 
     var self = this;
-    self.selectedGame;
     self.message;
-
+    self.game;
     self.succesMessage = '';
     self.errorMessage = '';
 
@@ -52,20 +44,23 @@ module.exports = function($scope,$stateParams, GameListFactory) {
         });
     };
 
-    self.startGame = function(id){
-        GameListFactory.startGame(id).then(function(response){
-            $("#gameGestart").show();
-        });
-    };
-
-
-    self.showDetails = function(game){
-        console.log(game);
-        self.selectedGame = game;
-        $('#GameDetailModel').modal('show');
-    };
-
     self.getGames = function() {
         return GameListFactory.games;
     };
+
+    self.showDetail = function(selectedgame){
+        self.game = selectedgame;
+        console.log("showDetail");
+        var modalInstance = $uibModal.open({
+            templateUrl: '../../GameList/Views/detailGame.html',
+            controller: require("../../GameList/Controllers/detailGameController"),
+            controllerAs : "dg",
+            size: 'lg',
+            resolve: {
+                game: function(){
+                    return self.game;
+                }
+            }
+        });
+    }
 };

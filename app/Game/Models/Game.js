@@ -93,4 +93,12 @@ Game.prototype.canIJoin = function(){
     return false;
 };
 
+Game.prototype.canDelete = function(){
+    if(this.createdBy._id === this.userid){
+        if(this.state != "playing"){
+            return true;
+        }
+    }
+    return false;
+};
 module.exports = Game;

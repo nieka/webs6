@@ -1,0 +1,36 @@
+<!--game detail model-->
+
+<div class="modal-header">
+    <button type="button" class="close" ng-click="dg.cancel()">&times;</button>
+    <h4 class="modal-title">Game detail</h4>
+    <div class="alert alert-success alert-dismissible" role="alert" ng-if="dg.succesMessage != ''">
+        {{ dg.succesMessage }}
+    </div>
+</div>
+<div class="modal-body">
+    <strong>Game details</strong>
+    <ul style="list-style-type:none">
+        <li><strong>Createby:</strong>          {{dg.selectedgame.getCreatorName()}} </li>
+        <li><strong>Create On:</strong>         {{dg.selectedgame.getCreatedOn()}} </li>
+        <li><strong>Started On :</strong>       {{dg.selectedgame.getStartedOn()}} </li>
+        <li><strong>Ended On:</strong>          {{dg.selectedgame.getEndedOn()}} </li>
+        <li><strong>Amount of players:</strong> {{dg.selectedgame.AmountOfPlayers()}} </li>
+        <li><strong>Max players:</strong>       {{dg.selectedgame.getMaxPlayers()}} </li>
+        <li><strong>Min players:</strong>       {{dg.selectedgame.getMinPlayers()}} </li>
+        <li><strong>State:</strong>             {{dg.selectedgame.getState()}} </li>
+    </ul>
+    <strong>Players:</strong>
+    <ul ng-repeat="player in dg.selectedgame.getPlayers()">
+        <li>{{player.name}}</li>
+    </ul>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+                <button ng-if="dg.selectedgame.canStart()" class="btn btn-success" ng-click="dg.startGame(dg.selectedgame.getId())">Start game</button>
+                <button ng-if="dg.selectedgame.canDelete()" class="btn btn-danger" ng-click="dg.deleteGame(dg.selectedgame.getId())">Delete game</button>
+        </div>
+
+    </div>
+
+</div>

@@ -32,7 +32,7 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-info" ng-click="g.showDetails(game)">Details</button>
+                            <button class="btn btn-info" ng-click="g.showDetail(game)" >Detail</button>
                         </td>
                         <td>
                             <div ng-if="game.state == 'playing'">
@@ -41,48 +41,6 @@
                         </td>
                     </tr>
             </table>
-        </div>
-
-    </div>
-
-    <!-- Modals -->
-    <!--game detail model-->
-    <div id="GameDetailModel" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Game detail</h4>
-                    <div class="alert alert-success alert-dismissible" role="alert" style="display:none;" id="gameGestart">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <Strong>Game is gestart</Strong>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <strong>Game details</strong>
-                    <ul style="list-style-type:none">
-                        <li><strong>Createby:</strong>          {{g.selectedGame.getCreatorName()}} </li>
-                        <li><strong>Create On:</strong>         {{g.selectedGame.getCreatedOn()}} </li>
-                        <li><strong>Started On :</strong>       {{g.selectedGame.getStartedOn()}} </li>
-                        <li><strong>Ended On:</strong>          {{g.selectedGame.getEndedOn()}} </li>
-                        <li><strong>Amount of players:</strong> {{g.selectedGame.AmountOfPlayers()}} </li>
-                        <li><strong>Max players:</strong>       {{g.selectedGame.getMaxPlayers()}} </li>
-                        <li><strong>Min players:</strong>       {{g.selectedGame.getMinPlayers()}} </li>
-                        <li><strong>State:</strong>             {{g.selectedGame.getState()}} </li>
-                    </ul>
-                    <strong>Players:</strong>
-                    <ul ng-repeat="player in g.selectedGame.getPlayers()">
-                        <li>{{player.name}}</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <div ng-if="g.selectedGame.canStart()">
-                        <button class="btn btn-success" ng-click="g.startGame(g.selectedGame.getId())">Start game</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

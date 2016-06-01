@@ -52,5 +52,9 @@ module.exports = function($http) {
         return $http.post(baseUrl + "Games/" + id + "/Players");
     };
 
+    factory.deleteGame = function(id){
+        return $http.delete(baseUrl + "Games/" + id);
+    };
+
     return factory;
 };

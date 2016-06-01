@@ -1,9 +1,11 @@
 require('angular/angular.min');
 require('angular-ui-router/release/angular-ui-router.min');
+require('angular-ui-bootstrap/dist/ui-bootstrap-tpls');
 
 //Create app
 var app = angular.module('mahjong', [
-    "ui.router"
+    "ui.router",
+    "ui.bootstrap"
 ]);
 
 var playerFactory = require('../Player/Services/PlayerFactory');
@@ -17,6 +19,7 @@ var profielService = require('../Profiel/Services/ProfielService');
 var profielController = require('../Profiel/Controllers/Profielcontroller');
 var addGameController = require('../GameList/Controllers/addGameController');
 var showGameController = require('../GameList/Controllers/showGameController');
+var detailGameController = require('../GameList/Controllers/detailGameController');
 
 app.factory('PlayerFactory', playerFactory);
 app.factory('BoardService', boardService);
@@ -27,13 +30,16 @@ app.factory('httpRequestInterceptor', require('../config/httpinterceptors'));
 
 app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);
 app.controller('GameController', ['$scope', 'GameFactory', gameController]);
-app.controller('GameListController', ['$scope','$stateParams', 'GameListService', gameListController]);
+app.controller('GameListController', ['$scope','$stateParams', 'GameListService','$uibModal', gameListController]);
 app.controller('ProfielController', ['$scope','$state', 'ProfielService','GameListService', '$stateParams', profielController]);
 app.controller('AddGameController', ['$scope','GameListService', addGameController]);
+app.controller('DetailGameController', ['$scope','GameListService','$uibModalInstance', detailGameController]);
 app.controller('ShowGameController', ['$scope', '$stateParams', 'GameListService', 'BoardService', showGameController]);
 
 //directives
 app.directive('addGame', require('../GameList/Directives/addGame'));
+app.directive('detailGame', require('../GameList/Directives/detailgame'));
+
 app.directive('tile', require('../GameList/Directives/tile'));
 
 //config
