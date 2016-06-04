@@ -18,8 +18,8 @@ var gameListService = require('../GameList/services/GameListService');
 var profielService = require('../Profiel/Services/ProfielService');
 var profielController = require('../Profiel/Controllers/Profielcontroller');
 var addGameController = require('../GameList/Controllers/addGameController');
-var showGameController = require('../GameList/Controllers/showGameController');
-var tileController = require('../GameList/Controllers/tileController');
+var showGameController = require('../Game/Controllers/showGameController');
+var tileController = require('../Game/Controllers/tileController');
 var detailGameController = require('../GameList/Controllers/detailGameController');
 
 app.factory('PlayerFactory', playerFactory);
@@ -42,7 +42,7 @@ app.controller('TileController', ['$scope', 'BoardService', tileController]);
 app.directive('addGame', require('../GameList/Directives/addGame'));
 app.directive('detailGame', require('../GameList/Directives/detailgame'));
 
-app.directive('tile', require('../GameList/Directives/tile'));
+app.directive('tile', require('../Game/Directives/tile'));
 
 //config
 app.config(require('../config/routing'));

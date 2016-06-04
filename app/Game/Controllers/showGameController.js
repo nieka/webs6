@@ -2,7 +2,7 @@
  * Created by Raymond Phua on 28-5-2016.
  */
 
-var Board = require('../../Game/Models/Board');
+var Board = require('../Models/Board');
 
 module.exports = function($scope, $stateParams, GameListService, BoardService) {
     console.log("showgame controller");
@@ -11,7 +11,7 @@ module.exports = function($scope, $stateParams, GameListService, BoardService) {
     var selectedOne;
     var selectedTwo;
 
-    //showGame($stateParams.id);
+    showGame($stateParams.id);
 
     function showGame(id) {
         GameListService.getBoardTiles(id).then(function(value) {

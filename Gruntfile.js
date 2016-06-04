@@ -33,8 +33,8 @@ module.exports = function(grunt) {
                 tasks: 'copy'
             },
             css: {
-                files: 'app/**/*.css',
-                tasks: 'copy'
+                files: 'app/**/*.scss',
+                tasks: 'sass'
             },
             images: {
                 files: 'app/**/*.png',
@@ -48,6 +48,16 @@ module.exports = function(grunt) {
                 openBrowser : true,
                 runInBackground: true
             }
+        },
+        sass: {
+            dist: {
+                options: {
+                    style: 'expanded'
+                },
+                files: {
+                    'dist/ccs/app.ccs' : 'app/css/app/scss'
+                }
+            }
         }
     });
 
@@ -56,7 +66,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-http-server');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
     //The default tasks to run when you type: grunt
-    grunt.registerTask('default', ['browserify', 'copy', 'http-server', 'watch']);
+    grunt.registerTask('default', ['browserify', 'copy', 'http-server', 'watch','sass']);
 };
