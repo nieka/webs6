@@ -1,4 +1,6 @@
 @import "config";
+@import "tile";
+
 .table-nonfluid {
     width: auto !important;
 }
@@ -8,15 +10,6 @@
 
 .naamvalue {
     display: inline-block;
-}
-
-.tile {
-    width: $tile-width;
-    height: $tile-height;
-    background-color: green;
-    border-style: solid;
-    border-width: 3px;
-    position:absolute;
 }
 
 .board {
