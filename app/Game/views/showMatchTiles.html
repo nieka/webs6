@@ -5,13 +5,17 @@
 
 </div>
 <div class="modal-body">
-    <div ng-repeat="player in mt.getPlayers()">
-        <strong>{{player.name}}</strong>
-        <div class="container">
-            <div ng-repeat="matchedTile in mt.getMatchedTiles() | filter:match.foundBy: player._id">
-                <div class="row">
-                    <div ng-repeat="tile in matchedTile">
-                       <div class="tile show {{tile.tile.suit}}{{tile.tile.name}} col-sm-1"></div>
+    <div class="container">
+        <div ng-repeat="player in mt.getPlayers()">
+            <div class="col-sm-2">
+                <strong>{{player.name}}</strong>
+                <div ng-repeat="matchedTile in mt.getMatchedTiles()">
+                    <div class="row">
+                        <div ng-repeat="tile in matchedTile">
+                            <div ng-if="tile.match.foundBy === player._id">
+                                <div class="tile show {{tile.tile.suit}}{{tile.tile.name}} col-sm-1"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
