@@ -12,15 +12,19 @@
             </div>
 
             <add-game></add-game>
+            <button class="btn btn-default" ng-click="g.setOrderBy('state')">sort: status</button>
+            <button class="btn btn-default" ng-click="g.setOrderBy('createdOn')">sort: gemaakt op</button>
+            <button class="btn btn-default" ng-click="g.setOrderBy('createdBy.name')">sort: gemaakt door</button>
+            <label>Status: <input ng-model="search.state"></label>
             <table class="table table-nonfluid">
                 <thead>
                     <td><strong>Gemaakt door</strong></td>
                     <td><strong>Min spelers</strong></td>
                     <td><strong>Max spelers</strong></td>
                     <td><strong>Aantal spelers</strong></td>
-                    <td><strong>state</strong></td>
+                    <td><strong>State</strong></td>
                 </thead>
-                    <tr ng-repeat="game in g.getGames() ">
+                    <tr ng-repeat="game in g.getGames() | filter:search | orderBy:g.order:g.reverse">
                         <td> {{game.getCreatorName()}}</td>
                         <td> {{game.getMinPlayers()}}</td>
                         <td> {{game.getMaxPlayers()}}</td>

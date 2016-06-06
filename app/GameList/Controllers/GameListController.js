@@ -8,6 +8,8 @@ module.exports = function($scope,$stateParams, GameListFactory,$uibModal) {
     self.game;
     self.succesMessage = '';
     self.errorMessage = '';
+    self.order= 'status';
+    self.reverse = false;
 
     self.init = function(){
         var paramater = "";
@@ -51,6 +53,7 @@ module.exports = function($scope,$stateParams, GameListFactory,$uibModal) {
     self.showDetail = function(selectedgame){
         self.game = selectedgame;
         console.log("showDetail");
+        console.log(self.game);
         var modalInstance = $uibModal.open({
             templateUrl: '../../GameList/Views/detailGame.html',
             controller: require("../../GameList/Controllers/detailGameController"),
@@ -62,5 +65,10 @@ module.exports = function($scope,$stateParams, GameListFactory,$uibModal) {
                 }
             }
         });
+    }
+
+    self.setOrderBy = function(value) {
+        self.order = value;
+        self.reverse = !self.reverse;
     }
 };
