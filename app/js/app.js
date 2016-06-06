@@ -35,7 +35,7 @@ app.controller('GameListController', ['$scope','$stateParams', 'GameListService'
 app.controller('ProfielController', ['$scope','$state', 'ProfielService','GameListService', '$stateParams', profielController]);
 app.controller('AddGameController', ['$scope','GameListService', addGameController]);
 app.controller('DetailGameController', ['$scope','GameListService','$uibModalInstance', detailGameController]);
-app.controller('ShowGameController', ['$scope', '$stateParams', 'GameListService', 'BoardService', showGameController]);
+app.controller('ShowGameController', ['$scope', '$stateParams','$state', 'GameListService', 'BoardService','GameFactory','$uibModal', showGameController]);
 app.controller('TileController', ['$scope', 'BoardService', tileController]);
 
 //directives

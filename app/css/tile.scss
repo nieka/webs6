@@ -6,6 +6,11 @@
   background-image: url('./../images/sprites.png');
 }
 
+.selectTile {
+  border: 2px solid;
+  border-color: #0b97c4;
+}
+
 //board tilesbdfb
 .Character1 { background-position: 0px 0px; }
 .Character2 { background-position: -73px 0px; }

@@ -1,0 +1,17 @@
+<!--game detail model-->
+
+<div class="modal-header">
+    <button type="button" class="close" ng-click="mt.cancel()">&times;</button>
+    <h4 class="modal-title">Matched tiles</h4>
+
+</div>
+<div class="modal-body">
+    <div ng-repeat="player in mt.getPlayers()">
+        <strong>{{player.name}}</strong>
+        <div ng-repeat="matchedTile in mt.getMatchedTiles()| filter:{match.foundBy: player._id}">
+            {{matchedTile}}
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+</div>

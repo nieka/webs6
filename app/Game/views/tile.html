@@ -1,0 +1,7 @@
+
+<div class="tile {{t.tile.tile.suit}}{{t.tile.tile.name}}"
+     style="left:{{t.tile.xPos * 36 - 12* t.tile.zPos}}px; top: {{t.tile.yPos * 45 - 12 * t.tile.zPos}}px; z-index: {{t.tile.zPos}};"
+     ng-click="t.tileClick(t.tile)"
+     ng-class="{selectTile: t.selected}">
+
+</div>

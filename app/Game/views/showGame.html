@@ -1,6 +1,20 @@
 <!--show game model-->
+<div class="message-box">
+    <div class="alert alert-info" role="alert" ng-if="sg.infoMessage != ''">
+
+        {{ sg.infoMessage }}
+    </div>
+    <div class="alert alert-success" role="alert" ng-if="sg.succesMessage != ''">
+         {{ sg.succesMessage }}
+    </div>
+    <div class="alert alert-danger" ng-if="sg.errorMessage != ''">
+        {{ sg.errorMessage }}
+    </div>
+</div>
+
 <div class="board">
-    <tile ng-repeat="tile in sg.board.getBoardTiles()"
-          tileinfo="tile" >
+    <button ng-click="sg.showMatchTiles()">Matched tiles</button>
+    <tile ng-repeat="tile in sg.getBoardTiles()"
+          tileinfo="tile" match="sg.matchTiles" >
     </tile>
 </div>

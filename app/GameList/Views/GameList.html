@@ -40,7 +40,7 @@
                         </td>
                         <td>
                             <div ng-if="game.state == 'playing'">
-                                <button class="btn btn-success" ui-sref="showGame({id: game.getId()})">View Game</button>
+                                <button class="btn btn-success" ui-sref="showGame({game: game,canPlay: game.canPlay()})">View Game</button>
                             </div>
                         </td>
                     </tr>
