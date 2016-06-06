@@ -8,6 +8,7 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
     var self = this;
     var selectedOne;
     var selectedTwo;
+    var socket;
     self.infoMessage = "";
     self.errorMessage = "";
     self.succesMessage = "";
@@ -22,6 +23,11 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
         if(!self.canPlay){
             self.infoMessage = "Je kan deze game alleen maar bekijken!"
         }
+        socket = io('http://mahjongmayhem.herokuapp.com?gameId=' + self.id);
+        socket.on("match", function(data){
+            self.board.removeTile(data[0]);
+            self.board.removeTile(data[1]);
+        });
     }
 
     self.matchTiles = function(){
@@ -44,8 +50,6 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
         } else {
             return [];
         }
-
-
     };
 
     self.showMatchTiles = function(){
