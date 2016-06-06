@@ -20,7 +20,7 @@ module.exports = function($http) {
 
     service.deselect = function(tile){
         if(self.selectedTiles.length === 2){
-            if(self.selectedTiles[0]._id === tile._id){
+            if(self.selectedTiles[0]._id === tile.tile._id){
                 var temp = self.selectedTiles[1];
             } else {
                 var temp = self.selectedTiles[0];
@@ -34,12 +34,12 @@ module.exports = function($http) {
 
     service.getSelectedTiles = function(){
         return self.selectedTiles;
-    }
+    };
 
     service.sendmatch = function(id){
         var body =  {
-                tile1Id: self.selectedTiles[0]._id,
-                tile2Id: self.selectedTiles[1]._id };
+                tile1Id: self.selectedTiles[0].tile._id,
+                tile2Id: self.selectedTiles[1].tile._id };
         self.selectedTiles = [];
         return $http.post(baseUrl + "Games/"+ id + "/Tiles/matches", body);
     };
@@ -53,6 +53,8 @@ module.exports = function($http) {
             if(tilesMatch(tileOne.tile, tileTwo.tile)){
                 return true;
             } else {
+                self.selectedTiles[0].selected = false;
+                self.selectedTiles[1].selected = false;
                 self.selectedTiles = [];
                 return false;
             }
@@ -64,9 +66,9 @@ module.exports = function($http) {
 
     service.checkAvailable = function(tile) {
 
-        var left = hasTileLeft(tile);
-        var right = hasTileRight(tile);
-        var top = hasTileTop(tile);
+        var left = hasTileLeft(tile.tile);
+        var right = hasTileRight(tile.tile);
+        var top = hasTileTop(tile.tile);
 
         //if the tile has no tiles left or right and not on top return true else false
         if((!left || !right) && !top && self.canPlay){
