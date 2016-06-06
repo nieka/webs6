@@ -2,14 +2,21 @@
  * Created by Raymond Phua on 28-5-2016.
  */
 
-var Board = require('../Models/Board');
-
-module.exports = function($scope, $stateParams, GameListService, BoardService) {
-    console.log("tile controller");
-
+module.exports = function($scope,BoardService) {
     var self = this;
 
+    self.selected = false;
 
-    console.log(self.tile);
+    self.tileClick = function(tile){
+        if(self.selected){
+            self.selected = false;
+            BoardService.deselect(tile);
+        } else {
+            self.selected = BoardService.checkAvailable(tile);
+        }
 
+        if(BoardService.amountOfSelectedTiles() === 2){
+            self.match();
+        }
+    }
 };

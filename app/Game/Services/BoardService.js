@@ -4,18 +4,58 @@
 module.exports = function($http) {
 
     var service = {};
+    var baseUrl= 'https://mahjongmayhem.herokuapp.com/';
     var self = this;
+    self.selectedTiles = [];
 
-    service.init = function(tiles){
+    service.init = function(tiles,canPlay){
         self.boardTiles = tiles;
+        self.canPlay = canPlay;
+        self.selectedTiles = [];
     };
 
-    service.canMatch = function(tileOne, tileTwo){
-        //var tileOne = getTile(idOne);
-        //var tileTwo = getTile(idTwo);
+    service.amountOfSelectedTiles = function(){
+        return self.selectedTiles.length;
+    };
 
-        //return tilesMatch(tileOne.tile,tileTwo.tile);
-        return tilesMatch(tileOne, tileTwo);
+    service.deselect = function(tile){
+        if(self.selectedTiles.length === 2){
+            if(self.selectedTiles[0]._id === tile._id){
+                var temp = self.selectedTiles[1];
+            } else {
+                var temp = self.selectedTiles[0];
+            }
+            self.selectedTiles = [];
+            self.selectedTiles[0] = temp;
+        } else {
+            self.selectedTiles = [];
+        }
+    };
+
+    service.sendmatch = function(id){
+        var body =  {
+                tile1Id: self.selectedTiles[0]._id,
+                tile2Id: self.selectedTiles[1]._id };
+        self.selectedTiles = [];
+        return $http.post(baseUrl + "Games/"+ id + "/Tiles/matches", body);
+    };
+
+
+    service.canMatch = function(){
+
+        if(self.selectedTiles.length === 2){
+            var tileOne = self.selectedTiles[0];
+            var tileTwo = self.selectedTiles[1];
+            if(tilesMatch(tileOne.tile, tileTwo.tile)){
+                return true;
+            } else {
+                self.selectedTiles = [];
+                return false;
+            }
+        } else {
+            return false;
+        }
+
     };
 
     service.checkAvailable = function(tile) {
@@ -24,11 +64,13 @@ module.exports = function($http) {
         var right = hasTileRight(tile);
         var top = hasTileTop(tile);
 
-        console.log(left);
-        console.log(right);
-        console.log(top);
         //if the tile has no tiles left or right and not on top return true else false
-        return (!left || !right) && !top;
+        if((!left || !right) && !top && self.canPlay){
+            self.selectedTiles.push(tile);
+            return true;
+        } else {
+            return false;
+        }
     };
 
     function tilesMatch(tileOne,tileTwo){
@@ -45,15 +87,6 @@ module.exports = function($http) {
             }
         }
         return false;
-    }
-
-    function getTile(id){
-        var boardTiles = self.boardTiles;
-        for(var i=0; i < boardTiles.length; i++){
-            if(boardTiles[i]._id === id){
-                return boardTiles[i];
-            }
-        }
     }
 
     //checks if the chosen tile has a tile to the left

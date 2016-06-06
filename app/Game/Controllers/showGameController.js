@@ -4,14 +4,53 @@
 
 var Board = require('../Models/Board');
 
-module.exports = function($scope, $stateParams, GameListService, BoardService) {
-    console.log("showgame controller");
-
+module.exports = function($scope, $stateParams, $state, GameListService, BoardService) {
     var self = this;
     var selectedOne;
     var selectedTwo;
+    self.infoMessage = "";
+    self.errorMessage = "";
+    self.succesMessage = "";
 
-    showGame($stateParams.id);
+    init();
+
+    function init(){
+        self.canPlay = $stateParams.canPlay;
+        self.id = $stateParams.id;
+        showGame(self.id);
+        if(!self.canPlay){
+            self.infoMessage = "Je kan deze game alleen maar bekijken!"
+        }
+    }
+
+    self.matchTiles = function(){
+        self.errorMessage = "";
+        self.succesMessage = "";
+        if(BoardService.canMatch()){
+            self.succesMessage = "Je hebt een match";
+            BoardService.sendmatch(self.id).then(function(data){
+               showGame(self.id);
+            });
+        } else {
+            self.errorMessage = "Dat was geen match";
+            redrawBoard();
+        }
+    };
+
+    self.getBoardTiles = function(){
+        if(self.board != undefined){
+            return self.board.getBoardTiles();
+        } else {
+            return [];
+        }
+
+
+    };
+
+    function redrawBoard() {
+        console.log("redraw");
+        showGame(self.id);
+    }
 
     function showGame(id) {
         GameListService.getBoardTiles(id).then(function(value) {
@@ -23,9 +62,10 @@ module.exports = function($scope, $stateParams, GameListService, BoardService) {
 
     //zorgt dat alles geregeld word om de game te kunnen spelen
     function setupGame(tiles){
-        BoardService.init(tiles);
+        BoardService.init(tiles,self.canPlay);
     }
 
+    //is deze methode nog nodig??
     self.checkAvailable = function(tile) {
 
         //if the first tile is not undefined and if the user selects the same tile

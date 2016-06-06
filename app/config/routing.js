@@ -27,10 +27,11 @@ module.exports = function($stateProvider) {
         })
         .state('showGame', {
             params: {
-               id: null
+               id: null,
+               canPlay: null
             },
             url: '/showGame',
-            templateUrl: 'GameList/Views/showGame.html',
+            templateUrl: 'Game/Views/showGame.html',
             controller: 'ShowGameController as sg'
         });
 };

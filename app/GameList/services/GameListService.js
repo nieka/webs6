@@ -39,7 +39,7 @@ module.exports = function($http) {
     };
 
     factory.getBoardTiles = function(id) {
-        var url = 'https://mahjongmayhem.herokuapp.com/games/' + id + '/tiles';
+        var url = 'https://mahjongmayhem.herokuapp.com/games/' + id + '/tiles?matched=false';
         console.log("URL: " + url);
         return $http.get(url);
     };
