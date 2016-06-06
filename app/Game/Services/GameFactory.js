@@ -14,5 +14,9 @@ module.exports = function($http) {
         return $http.get(url);
     };
 
+    factory.getMatchedGames = function(id){
+        return $http.get(baseUrl + "Games/" + id + "/Tiles/matches");
+    };
+
     return factory;
 };

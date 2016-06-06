@@ -14,4 +14,13 @@ Board.prototype.getBoardTiles = function() {
 Board.prototype.setBoardTiles = function(gameTiles) {
     this.boardTiles = gameTiles;
 };
+
+Board.prototype.removeTile = function(tile){
+    for(var i=0; i< this.boardTiles.length; i++){
+        if(this.boardTiles._id === tile._id){
+            this.boardTiles = this.boardTiles.split(i,1);
+            console.log(this.boardTiles);
+        }
+    }
+};
 module.exports = Board;

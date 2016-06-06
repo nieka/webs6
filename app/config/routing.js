@@ -27,7 +27,7 @@ module.exports = function($stateProvider) {
         })
         .state('showGame', {
             params: {
-               id: null,
+               game: null,
                canPlay: null
             },
             url: '/showGame',

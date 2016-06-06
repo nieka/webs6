@@ -4,7 +4,7 @@
 
 var Board = require('../Models/Board');
 
-module.exports = function($scope, $stateParams, $state, GameListService, BoardService) {
+module.exports = function($scope, $stateParams, $state, GameListService, BoardService,GameFactory,$uibModal) {
     var self = this;
     var selectedOne;
     var selectedTwo;
@@ -16,7 +16,8 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
 
     function init(){
         self.canPlay = $stateParams.canPlay;
-        self.id = $stateParams.id;
+        self.id = $stateParams.game.getId();
+        self.game = $stateParams.game;
         showGame(self.id);
         if(!self.canPlay){
             self.infoMessage = "Je kan deze game alleen maar bekijken!"
@@ -29,7 +30,7 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
         if(BoardService.canMatch()){
             self.succesMessage = "Je hebt een match";
             BoardService.sendmatch(self.id).then(function(data){
-               showGame(self.id);
+                showGame(self.id);
             });
         } else {
             self.errorMessage = "Dat was geen match";
@@ -45,6 +46,26 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
         }
 
 
+    };
+
+    self.showMatchTiles = function(){
+        GameFactory.getMatchedGames(self.id).then(function(response){
+            var modalInstance = $uibModal.open({
+                templateUrl: '../../Game/Views/showMatchTiles.html',
+                controller: require("../../Game/Controllers/matchTilesController"),
+                controllerAs : "mt",
+                size: 'lg',
+                resolve: {
+                    tiles: function(){
+                        console.log("machted tiles");
+                        return response.data;
+                    },
+                    players : function(){
+                        return self.game.getPlayers();
+                    }
+                }
+            });
+        })
     };
 
     function redrawBoard() {
