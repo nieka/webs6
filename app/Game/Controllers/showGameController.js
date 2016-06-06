@@ -28,9 +28,13 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
         self.errorMessage = "";
         self.succesMessage = "";
         if(BoardService.canMatch()){
+            var machtedTiles =  BoardService.getSelectedTiles();
+            self.board.removeTile(machtedTiles[0]);
+            self.board.removeTile(machtedTiles[1]);
             self.succesMessage = "Je hebt een match";
             BoardService.sendmatch(self.id).then(function(data){
-                showGame(self.id);
+                //showGame(self.id);
+                console.log("match send");
             });
         } else {
             self.errorMessage = "Dat was geen match";
@@ -69,7 +73,6 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
     };
 
     function redrawBoard() {
-        console.log("redraw");
         showGame(self.id);
     }
 

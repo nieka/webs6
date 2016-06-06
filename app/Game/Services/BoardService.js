@@ -32,6 +32,10 @@ module.exports = function($http) {
         }
     };
 
+    service.getSelectedTiles = function(){
+        return self.selectedTiles;
+    }
+
     service.sendmatch = function(id){
         var body =  {
                 tile1Id: self.selectedTiles[0]._id,
