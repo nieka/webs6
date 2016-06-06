@@ -10,6 +10,17 @@ module.exports = function($scope,$uibModalInstance, tiles, players){
     function init(){
         self.matchedTiles = tiles;
         self.players = players;
+
+        var tempTiles = [];
+        for(var i=0; i< tiles.length; i = i + 2){
+            var tempObj = [];
+            tempObj.push(tiles[i]);
+            tempObj.push(tiles[i +1]);
+            tempTiles.push(tempObj);
+        }
+
+        self.matchedTiles = tempTiles;
+        console.log(tempTiles)
     }
 
     self.cancel = function () {

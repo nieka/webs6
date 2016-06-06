@@ -4,6 +4,10 @@
   height: $tile-height;
   position:absolute;
   background-image: url('./../images/sprites.png');
+
+  &.show{
+    position: relative;
+  }
 }
 
 .selectTile {

@@ -4,6 +4,8 @@ module.exports = function($scope, GameListService,$uibModalInstance, game){
     self.selectedgame = game;
     self.succesMessage = '';
 
+
+
     self.startGame = function(id){
         GameListService.startGame(id).then(function(response){
             self.succesMessage = 'Game is gestart';
