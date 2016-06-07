@@ -14,6 +14,10 @@ module.exports = function($http) {
         self.selectedTiles = [];
     };
 
+    service.setCanPlay = function(canPlay){
+        self.canPlay = canPlay;
+    };
+
     service.amountOfSelectedTiles = function(){
         return self.selectedTiles.length;
     };

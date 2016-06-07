@@ -28,6 +28,10 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
             self.board.removeTile(data[0]);
             self.board.removeTile(data[1]);
         });
+        socket.on("end", function(){
+            self.infoMessage = "De game is afgelopen";
+            BoardService.setCanPlay(false);
+        });
     }
 
     self.matchTiles = function(){

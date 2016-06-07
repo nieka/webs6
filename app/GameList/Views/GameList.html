@@ -12,10 +12,12 @@
             </div>
 
             <add-game></add-game>
-            <button class="btn btn-default" ng-click="g.setOrderBy('state')">sort: status</button>
-            <button class="btn btn-default" ng-click="g.setOrderBy('createdOn')">sort: gemaakt op</button>
-            <button class="btn btn-default" ng-click="g.setOrderBy('createdBy.name')">sort: gemaakt door</button>
-            <label>Status: <input ng-model="search.state"></label>
+            <div class="buttonbar">
+                <button class="btn btn-default" ng-click="g.setOrderBy('state')">sort: status</button>
+                <button class="btn btn-default" ng-click="g.setOrderBy('createdOn')">sort: gemaakt op</button>
+                <button class="btn btn-default" ng-click="g.setOrderBy('createdBy.name')">sort: gemaakt door</button>
+                <label>Status: <input ng-model="search.state"></label>
+            </div>
             <table class="table table-nonfluid">
                 <thead>
                     <td><strong>Gemaakt door</strong></td>

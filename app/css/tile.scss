@@ -1,3 +1,8 @@
+@mixin border-tile ($width){
+  border: $width solid;
+  border-color: $tile-selected;
+}
+
 
 .tile {
   width: $tile-width;
@@ -11,8 +16,7 @@
 }
 
 .selectTile {
-  border: 2px solid;
-  border-color: #0b97c4;
+  @include border-tile(3px);
 }
 
 //board tilesbdfb
