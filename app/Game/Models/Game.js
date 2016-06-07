@@ -15,6 +15,7 @@ var Game = function(id,createdBy, createdOn, startedOn, endedOn, gameTemplate, p
     this.maxPlayers = maxPlayers;
     this.minPlayers = minPlayers;
     this.state = state;
+    this.amountOfPlayers = players.length;
 };
 
 Game.prototype.getId = function(){
@@ -66,7 +67,7 @@ Game.prototype.getState = function() {
     return this.state;
 };
 
-Game.prototype.AmountOfPlayers = function(){
+Game.prototype.getAmountOfPlayers = function(){
     return this.players.length;
 };
 
@@ -86,7 +87,7 @@ Game.prototype.canIJoin = function(){
                 return false;
             }
         }
-       if(this.AmountOfPlayers() < this.maxPlayers){
+       if(this.getAmountOfPlayers() < this.maxPlayers){
            return true;
        }
     }

@@ -11,9 +11,8 @@
         {{ sg.errorMessage }}
     </div>
 </div>
-
+<button ng-click="sg.showMatchTiles()">Matched tiles</button>
 <div class="board">
-    <button ng-click="sg.showMatchTiles()">Matched tiles</button>
     <tile ng-repeat="tile in sg.getBoardTiles()"
           tileinfo="tile" match="sg.matchTiles" >
     </tile>
