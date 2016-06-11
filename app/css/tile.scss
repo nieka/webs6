@@ -28,6 +28,10 @@ $spriteUrl: url('./../images/sprites.png');
 .changeStyle2 {
   @include change('style2');
 }
+@mixin border-tile ($width){
+  border: $width solid;
+  border-color: $tile-selected;
+}
 
 .tile {
   width: $tile-width;
@@ -41,8 +45,7 @@ $spriteUrl: url('./../images/sprites.png');
 }
 
 .selectTile {
-  border: 2px solid;
-  border-color: #0b97c4;
+  @include border-tile(3px);
 }
 
 //board tilesbdfb

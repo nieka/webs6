@@ -14,13 +14,17 @@ module.exports = function($http) {
         self.selectedTiles = [];
     };
 
+    service.setCanPlay = function(canPlay){
+        self.canPlay = canPlay;
+    };
+
     service.amountOfSelectedTiles = function(){
         return self.selectedTiles.length;
     };
 
     service.deselect = function(tile){
         if(self.selectedTiles.length === 2){
-            if(self.selectedTiles[0]._id === tile._id){
+            if(self.selectedTiles[0]._id === tile.tile._id){
                 var temp = self.selectedTiles[1];
             } else {
                 var temp = self.selectedTiles[0];
@@ -30,6 +34,10 @@ module.exports = function($http) {
         } else {
             self.selectedTiles = [];
         }
+    };
+
+    service.getSelectedTiles = function(){
+        return self.selectedTiles;
     };
 
     service.sendmatch = function(id){
@@ -49,6 +57,8 @@ module.exports = function($http) {
             if(tilesMatch(tileOne.tile, tileTwo.tile)){
                 return true;
             } else {
+                self.selectedTiles[0].selected = false;
+                self.selectedTiles[1].selected = false;
                 self.selectedTiles = [];
                 return false;
             }

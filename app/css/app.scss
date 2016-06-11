@@ -1,6 +1,10 @@
 @import "config";
 @import "tile";
 
+body{
+    background-color: $background-color;
+}
+
 .table-nonfluid {
     width: auto !important;
 }
@@ -21,4 +25,7 @@
 .message-box{
     width: 30%;
     margin: auto;
+}
+.buttonbar{
+    margin-top: 5px;
 }

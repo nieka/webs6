@@ -8,6 +8,7 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
     var self = this;
     var selectedOne;
     var selectedTwo;
+    var socket;
     self.infoMessage = "";
     self.errorMessage = "";
     self.succesMessage = "";
@@ -23,19 +24,28 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
         if(!self.canPlay){
             self.infoMessage = "Je kan deze game alleen maar bekijken!"
         }
+        socket = io('http://mahjongmayhem.herokuapp.com?gameId=' + self.id);
+        socket.on("match", function(data){
+            self.board.removeTile(data[0]);
+            self.board.removeTile(data[1]);
+        });
+        socket.on("end", function(){
+            self.infoMessage = "De game is afgelopen";
+            BoardService.setCanPlay(false);
+        });
     }
 
     self.matchTiles = function(){
         self.errorMessage = "";
         self.succesMessage = "";
         if(BoardService.canMatch()){
+            var machtedTiles =  BoardService.getSelectedTiles();
+            self.board.removeTile(machtedTiles[0]);
+            self.board.removeTile(machtedTiles[1]);
             self.succesMessage = "Je hebt een match";
-            BoardService.sendmatch(self.id).then(function(data){
-                showGame(self.id);
-            });
+            BoardService.sendmatch(self.id);
         } else {
             self.errorMessage = "Dat was geen match";
-            redrawBoard();
         }
     };
 
@@ -45,8 +55,6 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
         } else {
             return [];
         }
-
-
     };
 
     self.showMatchTiles = function(){
@@ -68,11 +76,6 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
             });
         })
     };
-
-    function redrawBoard() {
-        console.log("redraw");
-        showGame(self.id);
-    }
 
     function showGame(id) {
         GameListService.getBoardTiles(id).then(function(value) {

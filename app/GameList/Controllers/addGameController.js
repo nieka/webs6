@@ -2,7 +2,6 @@
  * Created by niek on 25-5-2016.
  */
 module.exports = function($scope, GameListFactory){
-    console.log("addgame controller");
 
     var self = this;
 
@@ -21,7 +20,6 @@ module.exports = function($scope, GameListFactory){
             game.templateName = self.template;
             game.minPlayers = self.minPlayers;
             game.maxPlayers = self.maxPlayers;
-            console.log(game);
             self.minPlayers =1;
             self.maxPlayers =2;
             self.template = "Shanghai";
@@ -32,7 +30,7 @@ module.exports = function($scope, GameListFactory){
             });
             $('#addGameModel').modal('hide');
         } else {
-            self.errorMessage = "Max players must be higher than min players";
+            self.errorMessage = "Max players moet hoger zijn dan min players!";
         }
 
 

@@ -12,24 +12,22 @@
             </div>
 
             <add-game></add-game>
-            <button class="btn btn-default" ng-click="g.setOrderBy('state')">sort: status</button>
-            <button class="btn btn-default" ng-click="g.setOrderBy('createdOn')">sort: gemaakt op</button>
-            <button class="btn btn-default" ng-click="g.setOrderBy('createdBy.name')">sort: gemaakt door</button>
-            <label>Status: <input ng-model="search.state"></label>
+            <div class="buttonbar">
+                <label>Status: <input ng-model="search.state"></label>
+            </div>
+
             <table class="table table-nonfluid">
                 <thead>
-                    <td><strong>Gemaakt door</strong></td>
-                    <td><strong>Min spelers</strong></td>
-                    <td><strong>Max spelers</strong></td>
-                    <td><strong>Aantal spelers</strong></td>
-                    <td><strong>State</strong></td>
+                    <td ng-click="g.setOrderBy('createdBy.name')"><strong>Gemaakt door</strong></td>
+                    <td ng-click="g.setOrderBy('createdOn')"><strong>Gemaakt op:</strong></td>
+                    <td ng-click="g.setOrderBy('amountOfPlayers')"><strong>Spelers</strong></td>
+                    <td ng-click="g.setOrderBy('state')"><strong>State</strong></td>
                 </thead>
                     <tr ng-repeat="game in g.getGames() | filter:search | orderBy:g.order:g.reverse">
-                        <td> {{game.getCreatorName()}}</td>
-                        <td> {{game.getMinPlayers()}}</td>
-                        <td> {{game.getMaxPlayers()}}</td>
-                        <td> {{game.AmountOfPlayers()}}</td>
-                        <td> {{game.getState()}}</td>
+                        <td>{{game.getCreatorName()}}</td>
+                        <td>{{game.getCreatedOn()| date:'dd-MM-yyyy' }}</td>
+                        <td>{{game.getAmountOfPlayers()}} / {{game.getMaxPlayers()}}</td>
+                        <td>{{game.getState()}}</td>
                         <td>
                             <div ng-if="game.canIJoin()">
                                 <button class="btn btn-primary" ng-click="g.joinGame(game.getId())">Join</button>

@@ -7,16 +7,20 @@ module.exports = function($scope,BoardService) {
 
     self.selected = false;
 
-    self.tileClick = function(tile){
-        if(self.selected){
-            self.selected = false;
-            BoardService.deselect(tile);
+    self.tileClick = function(){
+        if(self.tile.selected){
+            self.tile.selected = false;
+            BoardService.deselect(self.tile);
         } else {
-            self.selected = BoardService.checkAvailable(tile);
+            self.tile.selected = BoardService.checkAvailable(self.tile);
         }
 
         if(BoardService.amountOfSelectedTiles() === 2){
             self.match();
         }
+    };
+
+    self.isSelected = function(){
+        return self.tile.selected;
     }
 };

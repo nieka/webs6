@@ -16,11 +16,12 @@ Board.prototype.setBoardTiles = function(gameTiles) {
 };
 
 Board.prototype.removeTile = function(tile){
+    var tempList = [];
     for(var i=0; i< this.boardTiles.length; i++){
-        if(this.boardTiles._id === tile._id){
-            this.boardTiles = this.boardTiles.split(i,1);
-            console.log(this.boardTiles);
+        if(this.boardTiles[i]._id != tile._id){
+            tempList.push(this.boardTiles[i])
         }
     }
+    this.boardTiles = tempList;
 };
 module.exports = Board;
