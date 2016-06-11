@@ -11,6 +11,7 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
     self.infoMessage = "";
     self.errorMessage = "";
     self.succesMessage = "";
+    self.style = true;
 
     init();
 
@@ -118,5 +119,9 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
                 console.log('No match');
             }
         }
+    }
+
+    self.changeStyle = function() {
+        self.style = !self.style;
     }
 };

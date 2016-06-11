@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 // This copies all the html and css into the dist/ folder
                 expand: true,
                 cwd: 'app/',
-                src: ['**/*.html', '**/*.css', '**/*.png'],
+                src: ['**/*.html', '**/*.css', '**/*.png', '**/*.jpg'],
                 dest: 'dist/'
             }
         },
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
                 tasks: 'sass'
             },
             images: {
-                files: 'app/**/*.png',
+                files: 'app/**/*.{png,jpg}',
                 tasks: 'copy'
             }
         },
@@ -69,5 +69,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
 
     //The default tasks to run when you type: grunt
-    grunt.registerTask('default', ['browserify', 'copy', 'http-server', 'watch','sass']);
+    grunt.registerTask('default', ['browserify', 'copy', 'sass','http-server',  'watch']);
 };
