@@ -12,7 +12,7 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
     self.infoMessage = "";
     self.errorMessage = "";
     self.succesMessage = "";
-    self.style = true;
+    self.tileStyle = "style1";
 
     init();
 
@@ -122,9 +122,14 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
                 console.log('No match');
             }
         }
-    }
+    };
 
     self.changeStyle = function() {
+        if(self.style) {
+            self.tileStyle = "style1";
+        } else {
+            self.tileStyle = "style2";
+        }
         self.style = !self.style;
     }
 };

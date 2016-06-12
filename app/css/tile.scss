@@ -1,150 +1,183 @@
-$spriteUrl: url('./../images/sprites.png');
-
-@mixin change ($style) {
-
-  @if $style == style2 {
-    $spriteUrl: url('./../images/mahjong_tiles.jpg');
-  }
-  @else {
-    $spriteUrl: url('./../images/sprites.png');
-  }
-
-  @debug $style;
-  @debug $spriteUrl;
-}
-
-.test {
-  background-color: green;
-}
-
-.test2 {
-  background-color: purple;
-}
-
-.changeStyle {
-  @include change('style1');
-}
-
-.changeStyle2 {
-  @include change('style2');
-}
 @mixin border-tile ($width){
   border: $width solid;
   border-color: $tile-selected;
-}
-
-.tile {
-  width: $tile-width;
-  height: $tile-height;
-  position:absolute;
-  background-image: $spriteUrl;//url('./../images/sprites.png');
-
-  &.show{
-    position: relative;
-  }
 }
 
 .selectTile {
   @include border-tile(3px);
 }
 
-//board tilesbdfb
-// SPRITE SHEET 2
-//.Character1 { background-position: -8px -14px; }
-//.Character2 { background-position: -83px -14px; }
-//.Character3 { background-position: -156px -14px; }
-//.Character4 { background-position: -230px -14px; }
-//.Character5 { background-position: -304px -14px; }
-//.Character6 { background-position: -379px -14px; }
-//.Character7 { background-position: -453px -14px; }
-//.Character8 { background-position: -527px -14px; }
-//.Character9 { background-position: -601px -14px; }
-//
-//.WindEast { background-position: -8px -479px; }
-//.WindWest { background-position: -83px -479px; }
-//.WindNorth { background-position: -156px -479px; }
-//.WindSouth { background-position: -230px -479px; }
-//
-//.Bamboo1 { background-position: -8px -131px; }
-//.Bamboo2 { background-position: -83px -131px; }
-//.Bamboo3 { background-position: -156px -131px; }
-//.Bamboo4 { background-position: -230px -131px; }
-//.Bamboo5 { background-position: -304px -131px; }
-//.Bamboo6 { background-position: -379px -131px; }
-//.Bamboo7 { background-position: -453px -131px; }
-//.Bamboo8 { background-position: -527px -131px; }
-//.Bamboo9 { background-position: -601px -131px; }
-//
-//.SeasonSpring { background-position: -8px -711px; }
-//.SeasonSummer { background-position: -83px -711px; }
-//.SeasonAutumn { background-position: -156px -711px; }
-//.SeasonWinter { background-position: -230px -711px; }
-//
-//.Circle1 { background-position: -8px -247px; }
-//.Circle2 { background-position: -83px -247px; }
-//.Circle3 { background-position: -156px -247px; }
-//.Circle4 { background-position: -230px -247px; }
-//.Circle5 { background-position: -304px -247px; }
-//.Circle6 { background-position: -379px -247px; }
-//.Circle7 { background-position: -453px -247px; }
-//.Circle8 { background-position: -527px -247px; }
-//.Circle9 { background-position: -601px -247px; }
-//
-//.FlowerBamboo { background-position: -8px -595px; }
-//.FlowerOrchid { background-position: -83px -595px; }
-//.FlowerChrysantememum { background-position: -156px -595px; }
-//.FlowerPlum { background-position: -230px -595px; }
-//
-//.DragonRed { background-position: -8px -363px; }
-//.DragonGreen { background-position: -83px -363px; }
-//.DragonWhite { background-position: -156px -363px; }
+.style2 {
+  &.tile {
+    width: $tile-width-style2;
+    height: $tile-height-style2;
+    position:absolute;
+    background-image: url('./../images/mahjong_tiles.jpg');
+
+    &.show{
+      position: relative;
+    }
+  }
+
+  &.Character1 { background-position: -8px -14px;  }
+  &.Character2 { background-position: -83px -14px;  }
+  &.Character3 { background-position: -156px -14px;  }
+  &.Character4 { background-position: -230px -14px;  }
+  &.Character5 { background-position: -304px -14px;  }
+  &.Character6 { background-position: -379px -14px;  }
+  &.Character7 { background-position: -453px -14px;  }
+  &.Character8 { background-position: -527px -14px;  }
+  &.Character9 { background-position: -601px -14px;  }
+
+  &.Bamboo1 {  background-position: -8px -131px;  }
+  &.Bamboo2 { background-position: -83px -131px;  }
+  &.Bamboo3 { background-position: -156px -131px;  }
+  &.Bamboo4 { background-position: -230px -131px;  }
+  &.Bamboo5 { background-position: -304px -131px;  }
+  &.Bamboo6 { background-position: -379px -131px;  }
+  &.Bamboo7 { background-position: -453px -131px;  }
+  &.Bamboo8 { background-position: -527px -131px;  }
+  &.Bamboo9 { background-position: -601px -131px;  }
+
+  &.Circle1 { background-position: -8px -247px;  }
+  &.Circle2 { background-position: -83px -247px;  }
+  &.Circle3 { background-position: -156px -247px;  }
+  &.Circle4 { background-position: -230px -247px;  }
+  &.Circle5 { background-position: -304px -247px;  }
+  &.Circle6 { background-position: -379px -247px;  }
+  &.Circle7 { background-position: -453px -247px;  }
+  &.Circle8 { background-position: -527px -247px;  }
+  &.Circle9 { background-position: -601px -247px;  }
+
+  &.WindEast { background-position: -8px -479px;  }
+  &.WindWest { background-position: -83px -479px;  }
+  &.WindNorth { background-position: -156px -479px;  }
+  &.WindSouth { background-position: -230px -479px;  }
+
+  &.SeasonSpring { background-position: -8px -711px;  }
+  &.SeasonSummer { background-position: -83px -711px;  }
+  &.SeasonAutumn { background-position: -156px -711px;  }
+  &.SeasonWinter { background-position: -230px -711px;  }
+
+  .FlowerBamboo { background-position: -8px -595px;  }
+  .FlowerOrchid { background-position: -83px -595px;  }
+  .FlowerChrysantememum { background-position: -156px -595px;  }
+  .FlowerPlum { background-position: -230px -595px;  }
+
+  &.DragonRed { background-position: -8px -363px; }
+  &.DragonGreen { background-position: -83px -363px; }
+  &.DragonWhite { background-position: -156px -363px; }
+}
+
+.style1 {
+  &.tile {
+    width: $tile-width;
+    height: $tile-height;
+    position:absolute;
+    background-image: url('./../images/sprites.png');
+
+    &.show{
+      position: relative;
+    }
+  }
+
+  &.Character1 { background-position: 0px 0px; }
+  &.Character2 { background-position: -73px 0px; }
+  &.Character3 { background-position: -146px 0px; }
+  &.Character4 { background-position: -219px 0px; }
+  &.Character5 { background-position: -292px 0px; }
+  &.Character6 { background-position: -365px 0px; }
+  &.Character7 { background-position: -438px 0px; }
+  &.Character8 { background-position: -511px 0px; }
+  &.Character9 { background-position: -584px 0px; }
+
+  &.WindNorth { background-position: -657px 0px; }
+  &.WindSouth { background-position: -730px 0px; }
+  &.WindEast { background-position: -803px 0px; }
+  &.WindWest { background-position: -876px 0px; }
+
+  &.Bamboo1 { background-position: 0px -90px; }
+  &.Bamboo2 { background-position: -73px -90px; }
+  &.Bamboo3 { background-position: -146px -90px; }
+  &.Bamboo4 { background-position: -219px -90px; }
+  &.Bamboo5 { background-position: -292px -90px; }
+  &.Bamboo6 { background-position: -365px -90px; }
+  &.Bamboo7 { background-position: -438px -90px; }
+  &.Bamboo8 { background-position: -511px -90px; }
+  &.Bamboo9 { background-position: -584px -90px; }
+
+  &.SeasonSpring { background-position: -657px -90px; }
+  &.SeasonSummer { background-position: -730px -90px; }
+  &.SeasonAutumn { background-position: -803px -90px; }
+  &.SeasonWinter { background-position: -876px -90px; }
+
+  &.Circle1 { background-position: 0px -180px; }
+  &.Circle2 { background-position: -73px -180px; }
+  &.Circle3 { background-position: -146px -180px; }
+  &.Circle4 { background-position: -219px -180px; }
+  &.Circle5 { background-position: -292px -180px; }
+  &.Circle6 { background-position: -365px -180px; }
+  &.Circle7 { background-position: -438px -180px; }
+  &.Circle8 { background-position: -511px -180px; }
+  &.Circle9 { background-position: -584px -180px; }
+
+  &.FlowerBamboo { background-position: -657px -180px; }
+  &.FlowerPlum { background-position: -730px -180px; }
+  &.FlowerOrchid { background-position: -803px -180px; }
+  &.FlowerChrysantememum { background-position: -876px -180px; }
+
+  &.DragonGreen { background-position: -951px 0px; }
+  &.DragonRed { background-position: -951px -90px; }
+  &.DragonWhite { background-position: -951px -180px; }
+}
+
 
 //SPRITE SHEET 1
-.Character1 { background-position: 0px 0px; }
-.Character2 { background-position: -73px 0px; }
-.Character3 { background-position: -146px 0px; }
-.Character4 { background-position: -219px 0px; }
-.Character5 { background-position: -292px 0px; }
-.Character6 { background-position: -365px 0px; }
-.Character7 { background-position: -438px 0px; }
-.Character8 { background-position: -511px 0px; }
-.Character9 { background-position: -584px 0px; }
-
-.WindNorth { background-position: -657px 0px; }
-.WindSouth { background-position: -730px 0px; }
-.WindEast { background-position: -803px 0px; }
-.WindWest { background-position: -876px 0px; }
-
-.Bamboo1 { background-position: 0px -90px; }
-.Bamboo2 { background-position: -73px -90px; }
-.Bamboo3 { background-position: -146px -90px; }
-.Bamboo4 { background-position: -219px -90px; }
-.Bamboo5 { background-position: -292px -90px; }
-.Bamboo6 { background-position: -365px -90px; }
-.Bamboo7 { background-position: -438px -90px; }
-.Bamboo8 { background-position: -511px -90px; }
-.Bamboo9 { background-position: -584px -90px; }
-
-.SeasonSpring { background-position: -657px -90px; }
-.SeasonSummer { background-position: -730px -90px; }
-.SeasonAutumn { background-position: -803px -90px; }
-.SeasonWinter { background-position: -876px -90px; }
-
-.Circle1 { background-position: 0px -180px; }
-.Circle2 { background-position: -73px -180px; }
-.Circle3 { background-position: -146px -180px; }
-.Circle4 { background-position: -219px -180px; }
-.Circle5 { background-position: -292px -180px; }
-.Circle6 { background-position: -365px -180px; }
-.Circle7 { background-position: -438px -180px; }
-.Circle8 { background-position: -511px -180px; }
-.Circle9 { background-position: -584px -180px; }
-
-.FlowerBamboo { background-position: -657px -180px; }
-.FlowerPlum { background-position: -730px -180px; }
-.FlowerOrchid { background-position: -803px -180px; }
-.FlowerChrysantememum { background-position: -876px -180px; }
-
-.DragonGreen { background-position: -951px 0px; }
-.DragonRed { background-position: -951px -90px; }
-.DragonWhite { background-position: -951px -180px; }
+//.Character1 { background-position: 0px 0px; }
+//.Character2 { background-position: -73px 0px; }
+//.Character3 { background-position: -146px 0px; }
+//.Character4 { background-position: -219px 0px; }
+//.Character5 { background-position: -292px 0px; }
+//.Character6 { background-position: -365px 0px; }
+//.Character7 { background-position: -438px 0px; }
+//.Character8 { background-position: -511px 0px; }
+//.Character9 { background-position: -584px 0px; }
+//
+//.WindNorth { background-position: -657px 0px; }
+//.WindSouth { background-position: -730px 0px; }
+//.WindEast { background-position: -803px 0px; }
+//.WindWest { background-position: -876px 0px; }
+//
+//.Bamboo1 { background-position: 0px -90px; }
+//.Bamboo2 { background-position: -73px -90px; }
+//.Bamboo3 { background-position: -146px -90px; }
+//.Bamboo4 { background-position: -219px -90px; }
+//.Bamboo5 { background-position: -292px -90px; }
+//.Bamboo6 { background-position: -365px -90px; }
+//.Bamboo7 { background-position: -438px -90px; }
+//.Bamboo8 { background-position: -511px -90px; }
+//.Bamboo9 { background-position: -584px -90px; }
+//
+//.SeasonSpring { background-position: -657px -90px; }
+//.SeasonSummer { background-position: -730px -90px; }
+//.SeasonAutumn { background-position: -803px -90px; }
+//.SeasonWinter { background-position: -876px -90px; }
+//
+//.Circle1 { background-position: 0px -180px; }
+//.Circle2 { background-position: -73px -180px; }
+//.Circle3 { background-position: -146px -180px; }
+//.Circle4 { background-position: -219px -180px; }
+//.Circle5 { background-position: -292px -180px; }
+//.Circle6 { background-position: -365px -180px; }
+//.Circle7 { background-position: -438px -180px; }
+//.Circle8 { background-position: -511px -180px; }
+//.Circle9 { background-position: -584px -180px; }
+//
+//.FlowerBamboo { background-position: -657px -180px; }
+//.FlowerPlum { background-position: -730px -180px; }
+//.FlowerOrchid { background-position: -803px -180px; }
+//.FlowerChrysantememum { background-position: -876px -180px; }
+//
+//.DragonGreen { background-position: -951px 0px; }
+//.DragonRed { background-position: -951px -90px; }
+//.DragonWhite { background-position: -951px -180px; }

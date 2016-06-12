@@ -6,7 +6,8 @@ module.exports = function(){
         restrict : 'EA',
         scope: {
             tile: "=tileinfo",
-            match: "="
+            match: "=",
+            style: "=tileStyle"
         },
         controller: 'TileController',
         controllerAs: 't',

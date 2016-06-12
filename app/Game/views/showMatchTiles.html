@@ -1,5 +1,6 @@
 <!--game detail model-->
 <div class="modal-header">
+    <button ng-click="mt.changeStyle()" class="btn btn-default">Change style</button>
     <button type="button" class="close" ng-click="mt.cancel()">&times;</button>
     <h4 class="modal-title">Matched tiles</h4>
 
@@ -13,7 +14,7 @@
                     <div class="row">
                         <div ng-repeat="tile in matchedTile">
                             <div ng-if="tile.match.foundBy === player._id">
-                                <div class="tile show {{tile.tile.suit}}{{tile.tile.name}} col-sm-1"></div>
+                                <div class="tile show {{mt.tileStyle}} {{tile.tile.suit}}{{tile.tile.name}} col-sm-1"></div>
                             </div>
                         </div>
                     </div>

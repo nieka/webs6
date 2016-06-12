@@ -55,6 +55,7 @@ module.exports = function($http) {
             var tileOne = self.selectedTiles[0];
             var tileTwo = self.selectedTiles[1];
             if(tilesMatch(tileOne.tile, tileTwo.tile)){
+                removeMatchedTiles(tileOne, tileTwo);
                 return true;
             } else {
                 self.selectedTiles[0].selected = false;
@@ -149,4 +150,22 @@ module.exports = function($http) {
 
 
     return service;
+
+    function getIndex(tile) {
+        for(var i = 0; i < self.boardTiles.length; i++) {
+            if (self.boardTiles[i]._id === tile._id) {
+                console.log(self.boardTiles[i]);
+                console.log(tile);
+                return i;
+            }
+        }
+    }
+
+    function removeMatchedTiles(tileOne, tileTwo) {
+        var one = getIndex(tileOne);
+        self.boardTiles.splice(one, 1);
+
+        var two = getIndex(tileTwo);
+        self.boardTiles.splice(two, 1);
+    }
 };

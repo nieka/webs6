@@ -8,6 +8,7 @@ var app = angular.module('mahjong', [
     "ui.bootstrap"
 ]);
 
+var indexController = require('../indexController');
 var playerFactory = require('../Player/Services/PlayerFactory');
 var playerController = require('../Player/Controllers/PlayerController');
 var gameFactory = require('../Game/Services/GameFactory');
@@ -29,6 +30,7 @@ app.factory('GameListService', gameListService);
 app.factory('ProfielService', profielService);
 app.factory('httpRequestInterceptor', require('../config/httpinterceptors'));
 
+app.controller('IndexController', ['$state', indexController]);
 app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);
 app.controller('GameController', ['$scope', 'GameFactory', gameController]);
 app.controller('GameListController', ['$scope','$stateParams', 'GameListService','$uibModal', gameListController]);

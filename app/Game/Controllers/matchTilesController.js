@@ -10,6 +10,7 @@ module.exports = function($scope,$uibModalInstance, tiles, players){
     function init(){
         self.matchedTiles = tiles;
         self.players = players;
+        self.tileStyle = "style1";
 
         var tempTiles = [];
         for(var i=0; i< tiles.length; i = i + 2){
@@ -35,5 +36,12 @@ module.exports = function($scope,$uibModalInstance, tiles, players){
         return self.matchedTiles;
     };
 
-
+    self.changeStyle = function() {
+        if(self.style) {
+            self.tileStyle = "style1";
+        } else {
+            self.tileStyle = "style2";
+        }
+        self.style = !self.style;
+    }
 };
