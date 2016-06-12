@@ -37,7 +37,7 @@
                             <button class="btn btn-info" ng-click="g.showDetail(game)" >Detail</button>
                         </td>
                         <td>
-                            <div ng-if="game.state == 'playing'">
+                            <div ng-if="game.state != 'open'">
                                 <button class="btn btn-success" ui-sref="showGame({game: game,canPlay: game.canPlay()})">View Game</button>
                             </div>
                         </td>

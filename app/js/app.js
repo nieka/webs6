@@ -13,7 +13,6 @@ var playerFactory = require('../Player/Services/PlayerFactory');
 var playerController = require('../Player/Controllers/PlayerController');
 var gameFactory = require('../Game/Services/GameFactory');
 var boardService = require('../Game/Services/BoardService');
-var gameController = require('../Game/Controllers/GameController');
 var gameListController = require('../GameList/Controllers/GameListController');
 var gameListService = require('../GameList/services/GameListService');
 var profielService = require('../Profiel/Services/ProfielService');
@@ -32,7 +31,6 @@ app.factory('httpRequestInterceptor', require('../config/httpinterceptors'));
 
 app.controller('IndexController', ['$state', indexController]);
 app.controller('PlayerController', ['$scope', 'PlayerFactory', playerController]);
-app.controller('GameController', ['$scope', 'GameFactory', gameController]);
 app.controller('GameListController', ['$scope','$stateParams', 'GameListService','$uibModal', gameListController]);
 app.controller('ProfielController', ['$scope','$state', 'ProfielService','GameListService', '$stateParams', profielController]);
 app.controller('AddGameController', ['$scope','GameListService', addGameController]);
@@ -42,8 +40,6 @@ app.controller('TileController', ['$scope', 'BoardService', tileController]);
 
 //directives
 app.directive('addGame', require('../GameList/Directives/addGame'));
-app.directive('detailGame', require('../GameList/Directives/detailgame'));
-
 app.directive('tile', require('../Game/Directives/tile'));
 
 //config
