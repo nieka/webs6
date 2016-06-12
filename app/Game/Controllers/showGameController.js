@@ -16,32 +16,34 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
 
     init();
 
-    function init(){
+    function init() {
         self.canPlay = $stateParams.canPlay;
         self.id = $stateParams.game.getId();
         self.game = $stateParams.game;
         showGame(self.id);
-        if(!self.canPlay){
+        if (!self.canPlay) {
             self.infoMessage = "Je kan deze game alleen maar bekijken!"
         }
         socket = io('http://mahjongmayhem.herokuapp.com?gameId=' + self.id);
-        socket.on("match", function(data){
-            self.board.removeTile(data[0]);
-            self.board.removeTile(data[1]);
+        socket.on("match", function (data) {
+            console.log("match");
+            BoardService.removeTile(data[0]);
+            BoardService.removeTile(data[1]);
+            $scope.$apply();
         });
-        socket.on("end", function(){
+        socket.on("end", function () {
             self.infoMessage = "De game is afgelopen";
             BoardService.setCanPlay(false);
         });
     }
 
-    self.matchTiles = function(){
+    self.matchTiles = function () {
         self.errorMessage = "";
         self.succesMessage = "";
-        if(BoardService.canMatch()){
-            var machtedTiles =  BoardService.getSelectedTiles();
-            self.board.removeTile(machtedTiles[0]);
-            self.board.removeTile(machtedTiles[1]);
+        if (BoardService.canMatch()) {
+            var machtedTiles = BoardService.getSelectedTiles();
+            BoardService.removeTile(machtedTiles[0]);
+            BoardService.removeTile(machtedTiles[1]);
             self.succesMessage = "Je hebt een match";
             BoardService.sendmatch(self.id);
         } else {
@@ -49,79 +51,28 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
         }
     };
 
-    self.getBoardTiles = function(){
-        if(self.board != undefined){
-            return self.board.getBoardTiles();
-        } else {
-            return [];
-        }
+    self.getBoardTiles = function () {
+        return BoardService.getBoardTiles();
     };
 
-    self.showMatchTiles = function(){
-        GameFactory.getMatchedGames(self.id).then(function(response){
+    self.showMatchTiles = function () {
+        GameFactory.getMatchedGames(self.id).then(function (response) {
             var modalInstance = $uibModal.open({
                 templateUrl: '../../Game/Views/showMatchTiles.html',
                 controller: require("../../Game/Controllers/matchTilesController"),
-                controllerAs : "mt",
+                controllerAs: "mt",
                 size: 'lg',
                 resolve: {
-                    tiles: function(){
+                    tiles: function () {
                         console.log("machted tiles");
                         return response.data;
                     },
-                    players : function(){
+                    players: function () {
                         return self.game.getPlayers();
                     }
                 }
             });
         })
-    };
-
-    function showGame(id) {
-        GameListService.getBoardTiles(id).then(function(value) {
-            setupGame(value.data);
-            console.log(value.data);
-            self.board = new Board(value.data);
-        });
-    }
-
-    //zorgt dat alles geregeld word om de game te kunnen spelen
-    function setupGame(tiles){
-        BoardService.init(tiles,self.canPlay);
-    }
-
-    //is deze methode nog nodig??
-    self.checkAvailable = function(tile) {
-
-        //if the first tile is not undefined and if the user selects the same tile
-        if (selectedOne) {
-            if (selectedOne._id === tile._id) {
-                //set the tile to undefined
-                selectedOne = undefined;
-                return;
-            }
-        }
-
-        //check if the selected tile is available
-        if (BoardService.checkAvailable(tile)) {
-            if (typeof selectedOne === "undefined") {
-                selectedOne = tile;
-            } else {
-                selectedTwo = tile;
-            }
-        }
-        console.log(selectedOne);
-        console.log(selectedTwo);
-
-        if (selectedOne && selectedTwo) {
-            if (BoardService.canMatch(selectedOne.tile, selectedTwo.tile)) {
-                console.log('Matched!');
-            } else {
-                //set the second tile to undefined
-                selectedTwo = undefined;
-                console.log('No match');
-            }
-        }
     };
 
     self.changeStyle = function() {
@@ -131,5 +82,17 @@ module.exports = function($scope, $stateParams, $state, GameListService, BoardSe
             self.tileStyle = "style2";
         }
         self.style = !self.style;
+    };
+
+    function showGame(id) {
+        GameListService.getBoardTiles(id).then(function (value) {
+            setupGame(value.data);
+        });
     }
+
+    //zorgt dat alles geregeld word om de game te kunnen spelen
+    function setupGame(tiles) {
+        BoardService.init(tiles, self.canPlay);
+    }
+
 };

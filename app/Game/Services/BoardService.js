@@ -7,6 +7,7 @@ module.exports = function($http) {
     var baseUrl= 'https://mahjongmayhem.herokuapp.com/';
     var self = this;
     self.selectedTiles = [];
+    self.boardTiles = [];
 
     service.init = function(tiles,canPlay){
         self.boardTiles = tiles;
@@ -48,6 +49,19 @@ module.exports = function($http) {
         return $http.post(baseUrl + "Games/"+ id + "/Tiles/matches", body);
     };
 
+    service.getBoardTiles = function(){
+        return self.boardTiles;
+    };
+
+    service.removeTile = function(tile){
+        var tempList = [];
+        for(var i=0; i< self.boardTiles.length; i++){
+            if(self.boardTiles[i]._id != tile._id){
+                tempList.push(self.boardTiles[i])
+            }
+        }
+        self.boardTiles = tempList;
+    };
 
     service.canMatch = function(){
 
@@ -85,10 +99,7 @@ module.exports = function($http) {
     };
 
     function tilesMatch(tileOne,tileTwo){
-        console.log(tileOne);
-        console.log(tileTwo);
         if(tileOne.suit === tileTwo.suit){
-            console.log(tileOne.suit + " " + tileTwo.suit);
             if(!tileOne.matchesWholeSuit || !tileTwo.matchesWholeSuit){
                 if(tileOne.name === tileTwo.name){
                     return true;
@@ -154,8 +165,6 @@ module.exports = function($http) {
     function getIndex(tile) {
         for(var i = 0; i < self.boardTiles.length; i++) {
             if (self.boardTiles[i]._id === tile._id) {
-                console.log(self.boardTiles[i]);
-                console.log(tile);
                 return i;
             }
         }
